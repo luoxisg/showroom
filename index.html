@@ -18,7 +18,10 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { corePlugins: { preflight: false } }
+        tailwind.config = { 
+            corePlugins: { preflight: false },
+            theme: { extend: { screens: { 'xs': '475px' } } }
+        }
     </script>
     
     <style>
@@ -32,6 +35,7 @@
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
             color: var(--text-color);
             overflow-x: hidden;
+            background-color: #f8f9fa;
         }
 
         /* Language Toggle Logic */
@@ -42,51 +46,72 @@
 
         /* Navigation */
         .navbar {
-            background-color: rgba(10, 37, 64, 0.95);
+            background-color: rgba(10, 37, 64, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
+            padding-top: 12px;
+            padding-bottom: 12px;
         }
-        .navbar-brand { font-weight: 700; color: white !important; }
-        .nav-link { color: rgba(255,255,255,0.8) !important; cursor: pointer; }
+        .navbar-brand { font-weight: 700; color: white !important; font-size: 1.3rem; }
+        .nav-link { color: rgba(255,255,255,0.8) !important; cursor: pointer; font-size: 0.95rem; }
         .nav-link:hover { color: var(--accent-color) !important; }
 
-        /* Hero Section */
+        /* Hero Section - Mobile Optimized */
         .hero-section {
             background: linear-gradient(135deg, #0a2540 0%, #001529 100%);
             color: white;
-            padding: 160px 0 100px;
+            padding: 140px 0 80px; /* Adjusted padding */
             position: relative;
         }
-        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .hero-title { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.2;
+        }
+        /* Mobile Typography Adjustments */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-section { padding: 120px 0 60px; }
+            .display-4 { font-size: 2rem; } /* Bootstrap adjustments */
+            p.lead { font-size: 1rem; }
+        }
+
         .btn-cta {
             background-color: var(--accent-color);
-            color: #000; font-weight: 700; padding: 12px 30px; border-radius: 50px; border: none; transition: transform 0.2s;
+            color: #000; font-weight: 700; padding: 14px 30px; border-radius: 50px; border: none; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
         }
         .btn-cta:hover { transform: translateY(-3px); background-color: #fff; color: var(--primary-color); }
 
-        /* Cards */
-        .triangle-card {
-            border: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            height: 100%; transition: transform 0.3s; background: white;
+        /* Cards - Spacing & Mobile Comfort */
+        .triangle-card, .shift-card, .pricing-card {
+            border: none; border-radius: 20px; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            height: 100%; 
+            background: white;
+            transition: transform 0.3s;
+            overflow: hidden;
         }
-        .triangle-card:hover { transform: translateY(-10px); }
-        .card-header-custom { padding: 20px; text-align: center; color: white; }
-        
-        /* MPO Shift Cards */
-        .shift-card {
-            border-left: 4px solid var(--primary-color);
-            background: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
+        /* Add breathing room on mobile stack */
+        @media (max-width: 991px) {
+            .col-lg-4 { margin-bottom: 24px; } 
         }
-        .shift-card:hover { transform: translateX(5px); border-left-color: var(--accent-color); }
-        
-        /* Pricing */
-        .pricing-card { border: 1px solid #eee; border-radius: 15px; padding: 40px; text-align: center; transition: 0.3s; background: white; }
-        .pricing-card.featured { border: 2px solid var(--primary-color); background-color: #fcfcfc; transform: scale(1.05); z-index: 1; }
+
+        .card-header-custom { padding: 25px; text-align: center; color: white; }
         
         .section-padding { padding: 80px 0; }
-        footer { background-color: var(--primary-color); color: white; padding: 50px 0; }
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 0; } /* More comfortable spacing on mobile */
+        }
+
+        .shift-card { border-left: 6px solid var(--primary-color); }
+        .pricing-card.featured { border: 2px solid var(--primary-color); background-color: #ffffff; transform: scale(1.05); z-index: 1; }
+        @media (max-width: 991px) {
+            .pricing-card.featured { transform: scale(1); border-width: 1px; border-color: var(--primary-color); }
+        }
+
+        footer { background-color: var(--primary-color); color: white; padding: 60px 0 40px; }
 
         /* React Containers */
         #react-dashboard-root, #react-map-root {
@@ -103,33 +128,23 @@
             
             <div class="d-flex order-lg-last align-items-center ms-3">
                 <button onclick="toggleLanguage()" class="btn btn-outline-light btn-sm rounded-pill px-3" id="langBtn">
-                    <i class="fas fa-globe me-2"></i><span id="langBtnText">English</span>
+                    <i class="fas fa-globe me-1"></i><span id="langBtnText">EN</span>
                 </button>
             </div>
 
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler navbar-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#golden-triangle">
-                        <span class="lang-zh">核心架构</span><span class="lang-en">Architecture</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#global-flow">
-                        <span class="lang-zh">三地联动</span><span class="lang-en">Global Flows</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#mpo-ops">
-                        <span class="lang-zh">运营</span><span class="lang-en">Ops</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">
-                        <span class="lang-zh">体验</span><span class="lang-en">Experience</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ai">
-                        <span class="lang-zh">AI 引擎</span><span class="lang-en">AI</span>
-                    </a></li>
-                    <li class="nav-item ms-3">
-                        <a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">
+            <div class="collapse navbar-collapse justify-content-end mt-3 mt-lg-0" id="navbarNav">
+                <ul class="navbar-nav align-items-center text-center">
+                    <li class="nav-item w-100 w-lg-auto"><a class="nav-link py-2" href="#golden-triangle"><span class="lang-zh">核心架构</span><span class="lang-en">Architecture</span></a></li>
+                    <li class="nav-item w-100 w-lg-auto"><a class="nav-link py-2" href="#global-flow"><span class="lang-zh">三地联动</span><span class="lang-en">Global Flows</span></a></li>
+                    <li class="nav-item w-100 w-lg-auto"><a class="nav-link py-2" href="#mpo-ops"><span class="lang-zh">运营</span><span class="lang-en">Ops</span></a></li>
+                    <li class="nav-item w-100 w-lg-auto"><a class="nav-link py-2" href="#experience"><span class="lang-zh">体验</span><span class="lang-en">Experience</span></a></li>
+                    <li class="nav-item w-100 w-lg-auto"><a class="nav-link py-2" href="#pricing"><span class="lang-zh">报价</span><span class="lang-en">Pricing</span></a></li>
+                    <li class="nav-item mt-3 mt-lg-0 ms-lg-3">
+                        <a class="btn btn-sm btn-outline-light rounded-pill px-4 py-2" href="#contact">
                             <span class="lang-zh">联系</span><span class="lang-en">Contact</span>
                         </a>
                     </li>
@@ -143,27 +158,27 @@
         <div class="container text-center z-1 position-relative">
             <h1 class="hero-title">
                 <span class="lang-zh">永不打烊的全球旗舰店</span>
-                <span class="lang-en">The Global Flagship Store That Never Sleeps</span>
+                <span class="lang-en">The 24/7 Global Flagship Store</span>
                 <br>
-                <span style="color: var(--accent-color);">
-                    <span class="lang-zh">24/7 沉浸式数字展厅</span>
-                    <span class="lang-en">24/7 Immersive Digital Showroom</span>
+                <span style="color: var(--accent-color); font-size: 0.8em;">
+                    <span class="lang-zh">全时段沉浸式数字展厅</span>
+                    <span class="lang-en">Immersive Digital Showroom</span>
                 </span>
             </h1>
-            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 800px;">
+            <p class="lead text-white-50 mb-5 mx-auto px-3" style="max-width: 800px;">
                 <span class="lang-zh">
-                    解决跨境网络黑洞、高昂夜班人力与展示细节缺失三大痛点。<br>
+                    解决跨境网络黑洞、高昂夜班人力与展示细节缺失。<br class="d-none d-md-block">
                     深圳硬件 + 新加坡通道 + 菲律宾服务 = 全球销售引擎。
                 </span>
                 <span class="lang-en">
-                    Solving the "Black Hole" of cross-border latency, high night-shift costs, and lack of detail.<br>
-                    Shenzhen Hardware + Singapore Gateway + Philippines Ops = Global Sales Engine.
+                    Solving cross-border latency and high operational costs.<br class="d-none d-md-block">
+                    Shenzhen HW + Singapore Hub + Philippines Ops = Global Engine.
                 </span>
             </p>
-            <a href="#contact" class="btn btn-cta btn-lg shadow-lg">
+            <a href="#contact" class="btn btn-cta shadow-lg">
                 <i class="fas fa-bolt me-2"></i> 
-                <span class="lang-zh">免费获取 <150ms RTT 网络测试报告</span>
-                <span class="lang-en">Get Free <150ms RTT Network Report</span>
+                <span class="lang-zh">获取 <150ms 网络测试报告</span>
+                <span class="lang-en">Get <150ms Network Report</span>
             </a>
         </div>
     </header>
@@ -175,24 +190,21 @@
                 <span class="lang-zh">核心架构：地缘套利“黄金三角”</span>
                 <span class="lang-en">The "Golden Triangle" Architecture</span>
             </h2>
-            <p class="section-subtitle">
+            <p class="section-subtitle px-3">
                 <span class="lang-zh">整合三地优势，消除物理距离摩擦。</span>
                 <span class="lang-en">Leveraging geo-arbitrage to eliminate physical friction.</span>
             </p>
-            <div class="row g-4">
+            <div class="row g-4 px-2">
                 <div class="col-lg-4">
                     <div class="triangle-card">
                         <div class="card-header-custom bg-primary">
                             <div class="fs-1 mb-2 text-info"><i class="fas fa-industry"></i></div>
-                            <h4>
-                                <span class="lang-zh">深圳 · 物理核心</span>
-                                <span class="lang-en">Shenzhen · Core</span>
-                            </h4>
+                            <h4><span class="lang-zh">深圳 · 物理核心</span><span class="lang-en">Shenzhen · Core</span></h4>
                         </div>
                         <div class="p-4">
-                            <p class="card-text small">
+                            <p class="card-text text-secondary">
                                 <span class="lang-zh">产品库与研发总部。提供工业光学 PTZ 展厅，展示精密硬件细节。</span>
-                                <span class="lang-en">Physical Product HQ. Equipped with Industrial PTZ optics to demonstrate precision hardware details.</span>
+                                <span class="lang-en">Product HQ & R&D. Equipped with Industrial PTZ optics for precision demos.</span>
                             </p>
                         </div>
                     </div>
@@ -201,15 +213,12 @@
                     <div class="triangle-card">
                         <div class="card-header-custom" style="background-color: #00509d;">
                             <div class="fs-1 mb-2 text-info"><i class="fas fa-network-wired"></i></div>
-                            <h4>
-                                <span class="lang-zh">新加坡 · 数字枢纽</span>
-                                <span class="lang-en">Singapore · Hub</span>
-                            </h4>
+                            <h4><span class="lang-zh">新加坡 · 数字枢纽</span><span class="lang-en">Singapore · Hub</span></h4>
                         </div>
                         <div class="p-4">
-                            <p class="card-text small">
+                            <p class="card-text text-secondary">
                                 <span class="lang-zh">合规数据路由与低延迟中转。利用 IEPL 专线弥合网络差距。</span>
-                                <span class="lang-en">Compliance & Routing. Bridging the firewall gap with low-latency IEPL circuits.</span>
+                                <span class="lang-en">Data Compliance & Routing. Bridging the firewall gap with low-latency IEPL.</span>
                             </p>
                         </div>
                     </div>
@@ -218,15 +227,12 @@
                     <div class="triangle-card">
                         <div class="card-header-custom" style="background-color: #0077b6;">
                             <div class="fs-1 mb-2 text-info"><i class="fas fa-headset"></i></div>
-                            <h4>
-                                <span class="lang-zh">菲律宾 · 运营引擎</span>
-                                <span class="lang-en">Philippines · Ops</span>
-                            </h4>
+                            <h4><span class="lang-zh">菲律宾 · 运营引擎</span><span class="lang-en">Philippines · Ops</span></h4>
                         </div>
                         <div class="p-4">
-                            <p class="card-text small">
-                                <span class="lang-zh">24/7 市场流程外包 (MPO)。英语原生团队实现“跟随太阳”服务。</span>
-                                <span class="lang-en">24/7 MPO Center. Native English talent enabling "Follow-the-Sun" zero-downtime service.</span>
+                            <p class="card-text text-secondary">
+                                <span class="lang-zh">24/7 MPO 外包中心。英语原生团队实现“跟随太阳”服务。</span>
+                                <span class="lang-en">24/7 MPO Center. Native English talent enabling "Follow-the-Sun" service.</span>
                             </p>
                         </div>
                     </div>
@@ -235,40 +241,37 @@
         </div>
     </section>
 
-    <!-- NEW MODULE: Global Flows Animation -->
+    <!-- NEW MODULE: Global Flows Animation (Mobile Optimized) -->
     <section id="global-flow" class="py-5" style="background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);">
         <div class="container">
             <div class="row mb-4 text-center text-white">
-                <div class="col-12">
+                <div class="col-12 px-3">
                     <h2 class="fw-bold">
                         <span class="lang-zh">全球全链路动态闭环</span>
                         <span class="lang-en">Global Closed-Loop Dynamics</span>
                     </h2>
-                    <p class="text-white-50">
-                        <span class="lang-zh">信息流、物流、资金流的协同运作</span>
-                        <span class="lang-en">Synergy of Information, Logistics, and Financial Flows</span>
+                    <p class="text-white-50 small">
+                        <span class="lang-zh">信息流、物流、资金流的可视化协同</span>
+                        <span class="lang-en">Synergy of Info, Logistics, and Financial Flows</span>
                     </p>
                 </div>
             </div>
             
             <!-- React Map Mount Point -->
-            <div id="react-map-root"></div>
+            <div id="react-map-root" class="px-0 px-md-3"></div>
             
-            <div class="row mt-4 text-white-50 text-center small">
-                <div class="col-md-4">
-                    <i class="fas fa-network-wired text-info mb-2"></i><br>
-                    <span class="lang-zh">信息流：深/菲汇聚新加坡，低延迟直达欧美</span>
-                    <span class="lang-en">Info: SZ/PH converge in SG, low-latency to West</span>
+            <div class="row mt-4 text-white-50 text-center small gy-3">
+                <div class="col-4">
+                    <i class="fas fa-network-wired text-info mb-1"></i><br>
+                    <span class="d-block lh-1 text-xs"><span class="lang-zh">信息流</span><span class="lang-en">Data</span></span>
                 </div>
-                <div class="col-md-4">
-                    <i class="fas fa-shipping-fast text-warning mb-2"></i><br>
-                    <span class="lang-zh">物流：深圳工厂直发全球 (Dropshipping)</span>
-                    <span class="lang-en">Logistics: Direct shipping from SZ HQ</span>
+                <div class="col-4">
+                    <i class="fas fa-shipping-fast text-warning mb-1"></i><br>
+                    <span class="d-block lh-1 text-xs"><span class="lang-zh">物流</span><span class="lang-en">Logistics</span></span>
                 </div>
-                <div class="col-md-4">
-                    <i class="fas fa-coins text-warning mb-2" style="color: #fbbf24 !important;"></i><br>
-                    <span class="lang-zh">资金流：全球收款，合规结算至新加坡</span>
-                    <span class="lang-en">Finance: Global collection, settlement in SG</span>
+                <div class="col-4">
+                    <i class="fas fa-coins text-warning mb-1" style="color: #fbbf24 !important;"></i><br>
+                    <span class="d-block lh-1 text-xs"><span class="lang-zh">资金流</span><span class="lang-en">Money</span></span>
                 </div>
             </div>
         </div>
@@ -277,79 +280,78 @@
     <!-- MODULE: MPO Operations -->
     <section id="mpo-ops" class="section-padding bg-white">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <h2 class="section-title">
-                        <span class="lang-zh">全球 24/7 MPO 战略实施</span>
-                        <span class="lang-en">Global 24/7 MPO Implementation</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        <span class="lang-zh">基于“跟随客户”模式的无缝时区覆盖</span>
-                        <span class="lang-en">Seamless timezone coverage based on "Follow the Client"</span>
-                    </p>
-
-                    <div class="card bg-light border-0 mb-5">
-                        <div class="card-body p-4">
-                            <h5 class="card-title mb-4 text-center text-primary fw-bold">
-                                <i class="fas fa-clock me-2"></i>
-                                <span class="lang-zh">三班制“日不落”运营体系 (马尼拉中心)</span>
-                                <span class="lang-en">The 3-Shift "Follow-the-Sun" System (Manila Hub)</span>
-                            </h5>
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <div class="shift-card p-3 h-100">
-                                        <div class="badge bg-info text-dark mb-2">A Shift</div>
-                                        <h5 class="fw-bold"><span class="lang-zh">亚太班 (APAC)</span><span class="lang-en">APAC Shift</span></h5>
-                                        <p class="small text-muted mb-2">06:00 – 15:00 (GMT+8)</p>
-                                        <ul class="small ps-3 mb-0">
-                                            <li><span class="lang-zh">服务澳新市场</span><span class="lang-en">Support AU/NZ Markets</span></li>
-                                            <li><span class="lang-zh">处理美国日终数据</span><span class="lang-en">Process US EOD Data</span></li>
-                                        </ul>
-                                    </div>
+            <h2 class="section-title">
+                <span class="lang-zh">全球 24/7 运营</span>
+                <span class="lang-en">Global 24/7 Ops</span>
+            </h2>
+            
+            <!-- Shift Schedule -->
+            <div class="card bg-light border-0 mb-5 mx-2 mx-lg-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4 text-center text-primary fw-bold">
+                        <i class="fas fa-clock me-2"></i>
+                        <span class="lang-zh">三班制“日不落”体系</span>
+                        <span class="lang-en">3-Shift "Follow-the-Sun"</span>
+                    </h5>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="shift-card p-4 h-100">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="fw-bold mb-0 text-dark"><span class="lang-zh">亚太班</span><span class="lang-en">APAC</span></h5>
+                                    <span class="badge bg-info text-dark">06:00-15:00</span>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="shift-card p-3 h-100" style="border-left-color: #00509d;">
-                                        <div class="badge bg-primary mb-2">B Shift</div>
-                                        <h5 class="fw-bold"><span class="lang-zh">欧非班 (EMEA)</span><span class="lang-en">EMEA Shift</span></h5>
-                                        <p class="small text-muted mb-2">14:00 – 23:00 (GMT+8)</p>
-                                        <ul class="small ps-3 mb-0">
-                                            <li><span class="lang-zh">伦敦/柏林黄金时间</span><span class="lang-en">London/Berlin Prime Time</span></li>
-                                            <li><span class="lang-zh">承接亚太交接</span><span class="lang-en">APAC Handover</span></li>
-                                        </ul>
-                                    </div>
+                                <p class="small text-muted mb-0"><span class="lang-zh">服务澳新市场 / 美国日终数据</span><span class="lang-en">Support AU/NZ / US EOD Data</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="shift-card p-4 h-100" style="border-left-color: #00509d;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="fw-bold mb-0 text-primary"><span class="lang-zh">欧非班</span><span class="lang-en">EMEA</span></h5>
+                                    <span class="badge bg-primary">14:00-23:00</span>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="shift-card p-3 h-100" style="border-left-color: #0a2540;">
-                                        <div class="badge bg-dark mb-2">C Shift</div>
-                                        <h5 class="fw-bold"><span class="lang-zh">美洲班 (AMER)</span><span class="lang-en">AMER Shift</span></h5>
-                                        <p class="small text-muted mb-2">22:00 – 07:00 (GMT+8)</p>
-                                        <ul class="small ps-3 mb-0">
-                                            <li><span class="lang-zh">纽约/加州核心时间</span><span class="lang-en">NY/CA Core Hours</span></li>
-                                            <li><span class="lang-zh">直播电商主力</span><span class="lang-en">Live Stream Main Event</span></li>
-                                        </ul>
-                                    </div>
+                                <p class="small text-muted mb-0"><span class="lang-zh">伦敦柏林黄金时间 / 社交互动</span><span class="lang-en">London Prime Time / Social Engagement</span></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="shift-card p-4 h-100" style="border-left-color: #0a2540;">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h5 class="fw-bold mb-0 text-dark"><span class="lang-zh">美洲班</span><span class="lang-en">AMER</span></h5>
+                                    <span class="badge bg-dark">22:00-07:00</span>
                                 </div>
+                                <p class="small text-muted mb-0"><span class="lang-zh">纽约加州核心时间 / 直播电商</span><span class="lang-en">NY/CA Core Hours / Live Streaming</span></p>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Strategic Advantage & Workflows Accordion (Simplified for space) -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                             <h4 class="mb-3"><span class="lang-zh">为何选择菲律宾？</span><span class="lang-en">Why Philippines?</span></h4>
-                             <ul class="list-unstyled">
-                                 <li class="mb-3 d-flex"><i class="fas fa-check-circle text-success mt-1 me-3"></i><div><strong><span class="lang-zh">中性口音</span><span class="lang-en">Neutral Accent</span></strong><br><span class="small text-muted"><span class="lang-zh">认知摩擦最小化</span><span class="lang-en">Minimized cognitive friction</span></span></div></li>
-                                 <li class="mb-3 d-flex"><i class="fas fa-check-circle text-success mt-1 me-3"></i><div><strong><span class="lang-zh">夜班生态成熟</span><span class="lang-en">Mature Night Ecosystem</span></strong><br><span class="small text-muted"><span class="lang-zh">24h 交通安保，精力充沛</span><span class="lang-en">Energetic teams, safe infrastructure</span></span></div></li>
-                             </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <h4 class="mb-3"><span class="lang-zh">SOP 亮点</span><span class="lang-en">SOP Highlights</span></h4>
-                            <ul class="list-unstyled">
-                                <li class="mb-3 d-flex"><i class="fas fa-bolt text-warning mt-1 me-3"></i><div><strong>Speed to Lead</strong><br><span class="small text-muted"><span class="lang-zh">BANT 即时评分与路由</span><span class="lang-en">Instant BANT scoring & routing</span></span></div></li>
-                                <li class="mb-3 d-flex"><i class="fas fa-sync text-info mt-1 me-3"></i><div><strong><span class="lang-zh">无缝交接</span><span class="lang-en">Seamless Handover</span></strong><br><span class="small text-muted"><span class="lang-zh">60分钟重叠期 + RAG 报告</span><span class="lang-en">60min overlap + RAG reporting</span></span></div></li>
-                            </ul>
-                        </div>
-                    </div>
+            <!-- Features List (Simplified for Mobile) -->
+            <div class="row px-3">
+                <div class="col-lg-6 mb-4">
+                     <h4 class="mb-3 h5 fw-bold"><span class="lang-zh">为何选择菲律宾？</span><span class="lang-en">Why Philippines?</span></h4>
+                     <ul class="list-unstyled">
+                         <li class="mb-3 d-flex align-items-start bg-light p-3 rounded">
+                            <i class="fas fa-check-circle text-success mt-1 me-3 fa-lg"></i>
+                            <div><strong><span class="lang-zh">中性口音</span><span class="lang-en">Neutral Accent</span></strong><br><span class="small text-muted"><span class="lang-zh">认知摩擦最小化，理解西方规范</span><span class="lang-en">Minimized cognitive friction</span></span></div>
+                         </li>
+                         <li class="mb-3 d-flex align-items-start bg-light p-3 rounded">
+                            <i class="fas fa-moon text-success mt-1 me-3 fa-lg"></i>
+                            <div><strong><span class="lang-zh">夜班生态成熟</span><span class="lang-en">Mature Night Ecosystem</span></strong><br><span class="small text-muted"><span class="lang-zh">24h 交通安保，团队精力充沛</span><span class="lang-en">Energetic teams, safe infrastructure</span></span></div>
+                         </li>
+                     </ul>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="mb-3 h5 fw-bold"><span class="lang-zh">SOP 亮点</span><span class="lang-en">SOP Highlights</span></h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex align-items-start bg-light p-3 rounded">
+                            <i class="fas fa-bolt text-warning mt-1 me-3 fa-lg"></i>
+                            <div><strong>Speed to Lead</strong><br><span class="small text-muted"><span class="lang-zh">BANT 即时评分与路由，分秒必争</span><span class="lang-en">Instant BANT scoring & routing</span></span></div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-start bg-light p-3 rounded">
+                            <i class="fas fa-sync text-info mt-1 me-3 fa-lg"></i>
+                            <div><strong><span class="lang-zh">无缝交接</span><span class="lang-en">Seamless Handover</span></strong><br><span class="small text-muted"><span class="lang-zh">60分钟重叠期 + RAG 状态报告</span><span class="lang-en">60min overlap + RAG reporting</span></span></div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -362,44 +364,48 @@
                 <span class="lang-zh">数字孪生体验</span>
                 <span class="lang-en">Digital Twin Experience</span>
             </h2>
-            <div class="row text-center mt-5">
-                <div class="col-md-3 mb-4">
+            <div class="row text-center mt-5 gy-5">
+                <div class="col-6 col-md-3">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-video"></i></div>
-                    <h5><span class="lang-zh">多流架构</span><span class="lang-en">Multi-Stream</span></h5>
+                    <h6 class="mb-1"><span class="lang-zh">多流架构</span><span class="lang-en">Multi-Stream</span></h6>
+                    <small class="text-white-50 d-block"><span class="lang-zh">全景+微距+人像</span><span class="lang-en">3 Camera Views</span></small>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-6 col-md-3">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-hand-pointer"></i></div>
-                    <h5><span class="lang-zh">自主视角</span><span class="lang-en">User Choice</span></h5>
+                    <h6 class="mb-1"><span class="lang-zh">自主视角</span><span class="lang-en">User Choice</span></h6>
+                    <small class="text-white-50 d-block"><span class="lang-zh">自由 Pin 画面</span><span class="lang-en">Pin any view</span></small>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-6 col-md-3">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-gamepad"></i></div>
-                    <h5><span class="lang-zh">远程云台</span><span class="lang-en">Remote Control</span></h5>
+                    <h6 class="mb-1"><span class="lang-zh">远程云台</span><span class="lang-en">Remote Control</span></h6>
+                    <small class="text-white-50 d-block"><span class="lang-zh">控制物理摄像头</span><span class="lang-en">Control PTZ Cams</span></small>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class="col-6 col-md-3">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-magic"></i></div>
-                    <h5><span class="lang-zh">实时包装</span><span class="lang-en">Broadcast FX</span></h5>
+                    <h6 class="mb-1"><span class="lang-zh">实时包装</span><span class="lang-en">Broadcast FX</span></h6>
+                    <small class="text-white-50 d-block"><span class="lang-zh">ZoomISO 增强</span><span class="lang-en">Professional Overlay</span></small>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Module 5: AI (REACT COMPONENT INTEGRATION) -->
+    <!-- Module 5: AI (REACT COMPONENT) -->
     <section id="ai" class="section-padding" style="background-color: #0f172a;">
         <div class="container">
-            <div class="row mb-5 text-center">
-                <div class="col-12">
-                    <h2 class="text-white fw-bold">
-                        <span class="lang-zh">DeepInsight AI 决策引擎</span>
+            <div class="row mb-4 text-center">
+                <div class="col-12 px-3">
+                    <h2 class="text-white fw-bold h3">
+                        <span class="lang-zh">DeepInsight AI 引擎</span>
                         <span class="lang-en">DeepInsight AI Engine</span>
                     </h2>
-                    <p class="text-white-50">
-                        <span class="lang-zh">实时演示：视觉、语音与行为数据的实时量化</span>
-                        <span class="lang-en">Live Demo: Quantifying Vision, Voice, and Behavior in real-time.</span>
+                    <p class="text-white-50 small">
+                        <span class="lang-zh">视觉、语音与行为数据的实时量化</span>
+                        <span class="lang-en">Real-time quantification of Vision, Voice & Behavior.</span>
                     </p>
                 </div>
             </div>
             <!-- React App Mount Point -->
-            <div id="react-dashboard-root"></div>
+            <div id="react-dashboard-root" class="px-0 px-md-2"></div>
         </div>
     </section>
 
@@ -408,25 +414,25 @@
         <div class="container">
             <h2 class="section-title">
                 <span class="lang-zh">方案报价</span>
-                <span class="lang-en">Pricing Plans</span>
+                <span class="lang-en">Pricing</span>
             </h2>
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card">
-                        <h4><span class="lang-zh">标准级方案</span><span class="lang-en">Standard Plan</span></h4>
+            <div class="row justify-content-center mt-4 px-2">
+                <div class="col-lg-4">
+                    <div class="pricing-card p-4">
+                        <h5 class="fw-bold"><span class="lang-zh">标准级方案</span><span class="lang-en">Standard Plan</span></h5>
                         <h2 class="my-3 text-primary">$14,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
-                        <p class="text-muted small">
+                        <p class="text-muted small mb-0">
                             <span class="lang-zh">全国产硬件 / 1080p 双流</span>
                             <span class="lang-en">Domestic Hardware / 1080p Dual Stream</span>
                         </p>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card featured shadow">
-                        <div class="badge bg-primary mb-3"><span class="lang-zh">推荐</span><span class="lang-en">Best Value</span></div>
-                        <h4><span class="lang-zh">旗舰级方案</span><span class="lang-en">Flagship Plan</span></h4>
+                <div class="col-lg-4">
+                    <div class="pricing-card featured p-4 shadow">
+                        <div class="badge bg-primary mb-2"><span class="lang-zh">推荐</span><span class="lang-en">Best Value</span></div>
+                        <h5 class="fw-bold"><span class="lang-zh">旗舰级方案</span><span class="lang-en">Flagship Plan</span></h5>
                         <h2 class="my-3 text-primary">$21,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
-                        <p class="text-muted small">
+                        <p class="text-muted small mb-0">
                             <span class="lang-zh">Sony FR7 / 4K 多流 / 完整AI</span>
                             <span class="lang-en">Sony FR7 / 4K Multi-Stream / Full AI</span>
                         </p>
@@ -436,10 +442,10 @@
         </div>
     </section>
 
-    <footer class="text-center small">
+    <footer class="text-center small text-white-50">
         <div class="container">
-            <p>&copy; 2024 DCDeepTech Solutions. All Rights Reserved.</p>
-            <p class="text-white-50">Shenzhen • Singapore • Manila</p>
+            <p class="mb-1">&copy; 2024 DCDeepTech Solutions.</p>
+            <p class="mb-0">Shenzhen • Singapore • Manila</p>
         </div>
     </footer>
 
@@ -450,17 +456,16 @@
             const btnText = document.getElementById('langBtnText');
             body.classList.toggle('lang-mode-en');
             const isEn = body.classList.contains('lang-mode-en');
-            btnText.textContent = isEn ? '中文' : 'English';
+            btnText.textContent = isEn ? 'ZH' : 'EN';
             const event = new CustomEvent('langChange', { detail: { lang: isEn ? 'en' : 'zh' } });
             window.dispatchEvent(event);
         }
     </script>
 
-    <!-- REACT COMPONENTS (AI DASHBOARD + GLOBAL MAP) -->
+    <!-- REACT COMPONENTS -->
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useRef } = React;
 
-        // --- 1. SHARED UTILS ---
         const Icon = ({ name, className }) => {
             const icons = {
                 Activity: "fas fa-chart-line", Eye: "fas fa-eye",
@@ -474,11 +479,144 @@
             return <i className={`${icons[name] || 'fas fa-question'} ${className}`}></i>;
         };
 
-        // --- 2. NEW COMPONENT: GLOBAL MAP ---
+        // --- MOBILE-OPTIMIZED GLOBAL MAP ---
         const GlobalMap = () => {
             const [lang, setLang] = useState('zh');
-            const [activeFlow, setActiveFlow] = useState('all'); // 'all', 'info', 'logistics', 'finance'
+            const [activeFlow, setActiveFlow] = useState('all');
+            const [isMobile, setIsMobile] = useState(false);
 
+            useEffect(() => {
+                const handleResize = () => setIsMobile(window.innerWidth < 768);
+                const handleLangChange = (e) => setLang(e.detail.lang);
+                
+                window.addEventListener('resize', handleResize);
+                window.addEventListener('langChange', handleLangChange);
+                handleResize(); // Init
+
+                return () => {
+                    window.removeEventListener('resize', handleResize);
+                    window.removeEventListener('langChange', handleLangChange);
+                };
+            }, []);
+
+            const txt = {
+                zh: { 
+                    sz: "深圳 (硬件)", sg: "新加坡 (核心)", ph: "菲律宾 (运营)", 
+                    us: "美洲", eu: "欧洲",
+                    info: "信息流", log: "物流", fin: "资金"
+                },
+                en: { 
+                    sz: "SZ (HW)", sg: "SG (Hub)", ph: "PH (Ops)", 
+                    us: "AMER", eu: "EMEA",
+                    info: "Data", log: "Logistics", fin: "Finance"
+                }
+            };
+            const t = txt[lang];
+
+            // Coordinate Systems
+            const desktopPos = {
+                us: { x: 100, y: 150 }, eu: { x: 400, y: 80 },
+                sz: { x: 600, y: 180 }, ph: { x: 650, y: 250 }, sg: { x: 550, y: 280 }
+            };
+
+            // Mobile: Vertical Stack (Top: Asia, Middle: SG, Bottom: West)
+            const mobilePos = {
+                sz: { x: 100, y: 80 },  ph: { x: 300, y: 80 },
+                sg: { x: 200, y: 250 },
+                eu: { x: 100, y: 420 }, us: { x: 300, y: 420 }
+            };
+
+            const pos = isMobile ? mobilePos : desktopPos;
+            const viewBox = isMobile ? "0 0 400 500" : "0 0 800 400";
+            
+            // Animation Size Multipliers for visibility on mobile
+            const r = isMobile ? 6 : 3; // Larger particles on mobile
+            const strokeW = isMobile ? 3 : 2; // Thicker lines on mobile
+            const iconSize = isMobile ? "w-10 h-10 text-sm" : "w-6 h-6 text-xs"; 
+
+            const isActive = (type) => activeFlow === 'all' || activeFlow === type;
+
+            return (
+                <div className="bg-slate-900/50 rounded-3xl border border-slate-700 p-3 md:p-8 shadow-2xl">
+                    {/* Controls */}
+                    <div className="flex flex-wrap gap-2 justify-center mb-4">
+                        <button onClick={() => setActiveFlow('info')} className={`px-3 py-2 rounded-lg text-xs font-bold border transition flex items-center ${activeFlow === 'info' ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'border-slate-700 text-slate-400'}`}>
+                            <div className="w-2 h-2 rounded-full bg-cyan-400 mr-2"></div>{t.info}
+                        </button>
+                        <button onClick={() => setActiveFlow('logistics')} className={`px-3 py-2 rounded-lg text-xs font-bold border transition flex items-center ${activeFlow === 'logistics' ? 'bg-orange-500/20 border-orange-500 text-orange-400' : 'border-slate-700 text-slate-400'}`}>
+                            <div className="w-2 h-2 rounded-full bg-orange-400 mr-2"></div>{t.log}
+                        </button>
+                        <button onClick={() => setActiveFlow('finance')} className={`px-3 py-2 rounded-lg text-xs font-bold border transition flex items-center ${activeFlow === 'finance' ? 'bg-yellow-500/20 border-yellow-500 text-yellow-400' : 'border-slate-700 text-slate-400'}`}>
+                            <div className="w-2 h-2 rounded-full bg-yellow-400 mr-2"></div>{t.fin}
+                        </button>
+                        <button onClick={() => setActiveFlow('all')} className="px-3 py-2 text-xs text-slate-500 border border-transparent">Reset</button>
+                    </div>
+
+                    <div className={`relative w-full ${isMobile ? 'h-[500px]' : 'aspect-[2/1]'} bg-slate-950 rounded-xl overflow-hidden border border-slate-800`}>
+                        <div className="absolute inset-0 opacity-20" style={{backgroundImage: 'radial-gradient(#334155 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+
+                        <svg viewBox={viewBox} className="w-full h-full absolute inset-0 pointer-events-none">
+                            {/* 1. Info Flow (Blue) */}
+                            {isActive('info') && <>
+                                {/* SZ -> SG */}
+                                <path d={`M${pos.sz.x},${pos.sz.y} Q${isMobile ? 200 : pos.sz.x},${isMobile ? 150 : pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth={strokeW} />
+                                <circle r={r} fill="#22d3ee"><animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.sz.x},${pos.sz.y} Q${isMobile ? 200 : pos.sz.x},${isMobile ? 150 : pos.sg.y} ${pos.sg.x},${pos.sg.y}`} /></circle>
+                                {/* PH -> SG */}
+                                <path d={`M${pos.ph.x},${pos.ph.y} Q${isMobile ? 200 : pos.ph.x},${isMobile ? 150 : pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth={strokeW} />
+                                <circle r={r} fill="#22d3ee"><animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.ph.x},${pos.ph.y} Q${isMobile ? 200 : pos.ph.x},${isMobile ? 150 : pos.sg.y} ${pos.sg.x},${pos.sg.y}`} /></circle>
+                                {/* SG -> West */}
+                                <path d={`M${pos.sg.x},${pos.sg.y} L${pos.us.x},${pos.us.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
+                                <circle r={r+1} fill="#22d3ee"><animateMotion dur="2s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} L${pos.us.x},${pos.us.y}`} /></circle>
+                                <path d={`M${pos.sg.x},${pos.sg.y} L${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
+                                <circle r={r+1} fill="#22d3ee"><animateMotion dur="2s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} L${pos.eu.x},${pos.eu.y}`} /></circle>
+                            </>}
+
+                            {/* 2. Logistics (Orange) Direct */}
+                            {isActive('logistics') && <>
+                                <path d={`M${pos.sz.x},${pos.sz.y} ${isMobile ? 'Q400,250' : `Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100}`} ${pos.us.x},${pos.us.y}`} fill="none" stroke="#7c2d12" strokeWidth={strokeW} />
+                                <circle r={r} fill="#fb923c"><animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sz.x},${pos.sz.y} ${isMobile ? 'Q400,250' : `Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100}`} ${pos.us.x},${pos.us.y}`} /></circle>
+                                <path d={`M${pos.sz.x},${pos.sz.y} ${isMobile ? 'Q0,250' : `Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20}`} ${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#7c2d12" strokeWidth={strokeW} />
+                                <circle r={r} fill="#fb923c"><animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sz.x},${pos.sz.y} ${isMobile ? 'Q0,250' : `Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20}`} ${pos.eu.x},${pos.eu.y}`} /></circle>
+                            </>}
+
+                            {/* 3. Finance (Yellow) Back to SG */}
+                            {isActive('finance') && <>
+                                <path d={`M${pos.us.x},${pos.us.y} L${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth={strokeW} strokeDasharray="4,4" />
+                                <circle r={r} fill="#fbbf24"><animateMotion dur="2.5s" repeatCount="indefinite" path={`M${pos.us.x},${pos.us.y} L${pos.sg.x},${pos.sg.y}`} /></circle>
+                                <path d={`M${pos.eu.x},${pos.eu.y} L${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth={strokeW} strokeDasharray="4,4" />
+                                <circle r={r} fill="#fbbf24"><animateMotion dur="2.5s" repeatCount="indefinite" path={`M${pos.eu.x},${pos.eu.y} L${pos.sg.x},${pos.sg.y}`} /></circle>
+                            </>}
+                        </svg>
+
+                        {/* Nodes HTML (Better for text) */}
+                        {Object.entries(pos).map(([key, p]) => (
+                            <div key={key} className="absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10" 
+                                 style={{ left: isMobile ? `${p.x}px` : `${p.x/8}%`, top: isMobile ? `${p.y}px` : `${p.y/4}%` }}>
+                                <div className={`${iconSize} rounded-full shadow-lg flex items-center justify-center border-2 border-opacity-50
+                                    ${key === 'sz' ? 'bg-orange-500 border-orange-300' : 
+                                      key === 'sg' ? 'bg-cyan-500 border-cyan-300 animate-pulse' :
+                                      key === 'ph' ? 'bg-purple-500 border-purple-300' : 'bg-white border-white'}`}>
+                                      <i className={`${
+                                          key==='sz'?'fas fa-industry text-white':
+                                          key==='ph'?'fas fa-headset text-white':
+                                          key==='sg'?'fas fa-star text-white':
+                                          'fas fa-globe-americas text-slate-800'} `}></i>
+                                </div>
+                                <div className="mt-1 px-2 py-0.5 bg-black/70 backdrop-blur rounded text-[10px] text-white font-bold whitespace-nowrap border border-white/10">
+                                    {t[key]}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        // --- MOBILE-OPTIMIZED DASHBOARD ---
+        const AiDashboard = () => {
+            const [lang, setLang] = useState('zh');
+            const liveStats = { sentiment: 72, attention: 85, dealScore: 68 }; // Static/Simulated for stability
+            
             useEffect(() => {
                 const handleLangChange = (e) => setLang(e.detail.lang);
                 window.addEventListener('langChange', handleLangChange);
@@ -486,279 +624,73 @@
             }, []);
 
             const txt = {
-                zh: { 
-                    sz: "深圳 (硬件/研发)", sg: "新加坡 (结算/数据)", ph: "菲律宾 (运营/客服)", 
-                    us: "美洲市场", eu: "欧洲市场",
-                    legendInfo: "信息流 (数据/视频)", legendLog: "物流 (直发)", legendFin: "资金流 (结算)"
-                },
-                en: { 
-                    sz: "Shenzhen (HW/R&D)", sg: "Singapore (Hub/Finance)", ph: "Philippines (Ops)", 
-                    us: "Americas Market", eu: "Europe Market",
-                    legendInfo: "Info Flow (Data)", legendLog: "Logistics (Direct)", legendFin: "Finance (Settlement)"
-                }
+                zh: { title: "DeepInsight 引擎", status: "实时分析", feed: "客户视频流", score: "成交概率" },
+                en: { title: "DeepInsight Engine", status: "Live Analysis", feed: "Client Feed", score: "Deal Score" }
             };
             const t = txt[lang];
 
-            // Node Positions (Abstract Schematic)
-            const pos = {
-                us: { x: 100, y: 150 },
-                eu: { x: 400, y: 80 },
-                sz: { x: 600, y: 180 },
-                ph: { x: 650, y: 250 },
-                sg: { x: 550, y: 280 }
-            };
-
-            const isActive = (type) => activeFlow === 'all' || activeFlow === type;
-
-            return (
-                <div className="bg-slate-900/50 rounded-3xl border border-slate-700 p-4 md:p-8 shadow-2xl">
-                    {/* Controls / Legend */}
-                    <div className="flex flex-wrap gap-4 justify-center mb-6">
-                        <button onClick={() => setActiveFlow('info')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'info' ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'border-slate-700 text-slate-400 hover:border-cyan-500/50'}`}>
-                            <div className="w-2 h-2 rounded-full bg-cyan-400 inline-block mr-2"></div>{t.legendInfo}
-                        </button>
-                        <button onClick={() => setActiveFlow('logistics')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'logistics' ? 'bg-orange-500/20 border-orange-500 text-orange-400' : 'border-slate-700 text-slate-400 hover:border-orange-500/50'}`}>
-                            <div className="w-2 h-2 rounded-full bg-orange-400 inline-block mr-2"></div>{t.legendLog}
-                        </button>
-                        <button onClick={() => setActiveFlow('finance')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'finance' ? 'bg-yellow-500/20 border-yellow-500 text-yellow-400' : 'border-slate-700 text-slate-400 hover:border-yellow-500/50'}`}>
-                            <div className="w-2 h-2 rounded-full bg-yellow-400 inline-block mr-2"></div>{t.legendFin}
-                        </button>
-                        <button onClick={() => setActiveFlow('all')} className="text-xs text-slate-500 underline hover:text-white">
-                            Reset
-                        </button>
-                    </div>
-
-                    <div className="relative w-full aspect-[2/1] bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
-                        {/* Background Grid */}
-                        <div className="absolute inset-0 opacity-20" 
-                             style={{backgroundImage: 'radial-gradient(#334155 1px, transparent 1px)', backgroundSize: '20px 20px'}}>
-                        </div>
-
-                        <svg viewBox="0 0 800 400" className="w-full h-full absolute inset-0 pointer-events-none">
-                            <defs>
-                                <marker id="arrow-cyan" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#22d3ee"><path d="M0,0 L0,6 L6,3 z" /></marker>
-                                <marker id="arrow-orange" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#fb923c"><path d="M0,0 L0,6 L6,3 z" /></marker>
-                                <marker id="arrow-yellow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#fbbf24"><path d="M0,0 L0,6 L6,3 z" /></marker>
-                            </defs>
-
-                            {/* --- 1. Information Flow (Blue) --- */}
-                            {/* SZ -> SG */}
-                            {isActive('info') && <>
-                                <path d={`M${pos.sz.x},${pos.sz.y} Q${pos.sz.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth="2" />
-                                <circle r="2" fill="#22d3ee">
-                                    <animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.sz.x},${pos.sz.y} Q${pos.sz.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
-                                </circle>
-                            </>}
-                            {/* PH -> SG */}
-                            {isActive('info') && <>
-                                <path d={`M${pos.ph.x},${pos.ph.y} Q${pos.ph.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth="2" />
-                                <circle r="2" fill="#22d3ee">
-                                    <animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.ph.x},${pos.ph.y} Q${pos.ph.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
-                                </circle>
-                            </>}
-                            {/* SG -> US (Cable) */}
-                            {isActive('info') && <>
-                                <path d={`M${pos.sg.x},${pos.sg.y} Q${(pos.sg.x+pos.us.x)/2},${pos.sg.y+50} ${pos.us.x},${pos.us.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
-                                <circle r="3" fill="#22d3ee">
-                                    <animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} Q${(pos.sg.x+pos.us.x)/2},${pos.sg.y+50} ${pos.us.x},${pos.us.y}`} />
-                                </circle>
-                            </>}
-                            {/* SG -> EU (Cable) */}
-                            {isActive('info') && <>
-                                <path d={`M${pos.sg.x},${pos.sg.y} Q${pos.sg.x-100},${pos.eu.y} ${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
-                                <circle r="3" fill="#22d3ee">
-                                    <animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} Q${pos.sg.x-100},${pos.eu.y} ${pos.eu.x},${pos.eu.y}`} />
-                                </circle>
-                            </>}
-
-                            {/* --- 2. Logistics Flow (Orange) --- */}
-                            {/* SZ -> US (Direct) */}
-                            {isActive('logistics') && <>
-                                <path d={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100} ${pos.us.x},${pos.us.y}`} fill="none" stroke="#7c2d12" strokeWidth="2" />
-                                <rect width="8" height="4" fill="#fb923c">
-                                    <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100} ${pos.us.x},${pos.us.y}`} />
-                                </rect>
-                            </>}
-                            {/* SZ -> EU (Direct) */}
-                            {isActive('logistics') && <>
-                                <path d={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20} ${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#7c2d12" strokeWidth="2" />
-                                <rect width="8" height="4" fill="#fb923c">
-                                    <animateMotion dur="5s" repeatCount="indefinite" rotate="auto" path={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20} ${pos.eu.x},${pos.eu.y}`} />
-                                </rect>
-                            </>}
-
-                            {/* --- 3. Financial Flow (Yellow) --- */}
-                            {/* US -> SG (Payment) */}
-                            {isActive('finance') && <>
-                                <path d={`M${pos.us.x},${pos.us.y} Q${(pos.us.x+pos.sg.x)/2},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth="1.5" strokeDasharray="2,2" />
-                                <circle r="2.5" fill="#fbbf24">
-                                    <animateMotion dur="4s" repeatCount="indefinite" path={`M${pos.us.x},${pos.us.y} Q${(pos.us.x+pos.sg.x)/2},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
-                                </circle>
-                            </>}
-                            {/* EU -> SG (Payment) */}
-                            {isActive('finance') && <>
-                                <path d={`M${pos.eu.x},${pos.eu.y} Q${pos.eu.x},${pos.sg.y-50} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth="1.5" strokeDasharray="2,2" />
-                                <circle r="2.5" fill="#fbbf24">
-                                    <animateMotion dur="4s" repeatCount="indefinite" path={`M${pos.eu.x},${pos.eu.y} Q${pos.eu.x},${pos.sg.y-50} ${pos.sg.x},${pos.sg.y}`} />
-                                </circle>
-                            </>}
-                        </svg>
-
-                        {/* Nodes (DOM Elements for better text handling) */}
-                        {/* US */}
-                        <div className="absolute" style={{left: `${pos.us.x/8}%`, top: `${pos.us.y/4}%`, transform: 'translate(-50%, -50%)'}}>
-                            <div className="w-4 h-4 bg-white rounded-full animate-pulse shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
-                            <div className="mt-2 text-center text-[10px] md:text-xs text-white font-bold bg-black/50 px-2 py-1 rounded border border-white/20">{t.us}</div>
-                        </div>
-                        {/* EU */}
-                        <div className="absolute" style={{left: `${pos.eu.x/8}%`, top: `${pos.eu.y/4}%`, transform: 'translate(-50%, -50%)'}}>
-                            <div className="w-4 h-4 bg-white rounded-full animate-pulse shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
-                            <div className="mt-2 text-center text-[10px] md:text-xs text-white font-bold bg-black/50 px-2 py-1 rounded border border-white/20">{t.eu}</div>
-                        </div>
-                        
-                        {/* DeepTech Triangle Nodes */}
-                        {/* SZ */}
-                        <div className="absolute" style={{left: `${pos.sz.x/8}%`, top: `${pos.sz.y/4}%`, transform: 'translate(-50%, -50%)'}}>
-                            <div className="w-5 h-5 bg-orange-500 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.6)] flex items-center justify-center">
-                                <i className="fas fa-industry text-[10px] text-white"></i>
-                            </div>
-                            <div className="mt-2 text-center text-[10px] md:text-xs text-orange-400 font-bold bg-black/80 px-2 py-1 rounded border border-orange-500/50">{t.sz}</div>
-                        </div>
-                        {/* SG */}
-                        <div className="absolute" style={{left: `${pos.sg.x/8}%`, top: `${pos.sg.y/4}%`, transform: 'translate(-50%, -50%)'}}>
-                            <div className="w-6 h-6 bg-cyan-500 rounded-full shadow-[0_0_20px_rgba(6,182,212,0.8)] z-10 flex items-center justify-center">
-                                <i className="fas fa-star text-xs text-white"></i>
-                            </div>
-                            <div className="mt-2 text-center text-[10px] md:text-xs text-cyan-400 font-bold bg-black/80 px-2 py-1 rounded border border-cyan-500/50">{t.sg}</div>
-                        </div>
-                        {/* PH */}
-                        <div className="absolute" style={{left: `${pos.ph.x/8}%`, top: `${pos.ph.y/4}%`, transform: 'translate(-50%, -50%)'}}>
-                            <div className="w-5 h-5 bg-purple-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.6)] flex items-center justify-center">
-                                <i className="fas fa-headset text-[10px] text-white"></i>
-                            </div>
-                            <div className="mt-2 text-center text-[10px] md:text-xs text-purple-400 font-bold bg-black/80 px-2 py-1 rounded border border-purple-500/50">{t.ph}</div>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        // --- 3. EXISTING AI DASHBOARD ---
-        const useLiveData = () => {
-            const [data, setData] = useState({ sentiment: 65, attention: 80, dealScore: 42 });
-            useEffect(() => {
-                const interval = setInterval(() => {
-                    setData(prev => {
-                        const change = Math.random() > 0.5 ? 1 : -1;
-                        return {
-                            ...prev,
-                            sentiment: Math.min(100, Math.max(0, prev.sentiment + change * Math.random() * 5)),
-                            attention: Math.min(100, Math.max(0, prev.attention + change * Math.random() * 5)),
-                            dealScore: (prev.sentiment * 0.3 + prev.attention * 0.3 + 40)
-                        };
-                    });
-                }, 2000);
-                return () => clearInterval(interval);
-            }, []);
-            return data;
-        };
-
-        const contentDict = {
-            zh: {
-                headerTitle: "DeepInsight 引擎", liveStatus: "实时分析中", exportBtn: "导出报告", notifyBtn: "通知 MPO 团队",
-                feedTitle: "客户视频流 (已加密)", gaze: "视线追踪: 聚焦产品", intent: "意图识别: 技术验证",
-                transcriptTitle: "实时转录 & 洞察", dealTitle: "成交概率评分",
-                aiPred: "AI 预测: 基于'容差'和'芯片细节'的询问，进入样品测试阶段的概率极高。",
-                engagement: "专注度", sentiment: "情感倾向", techFit: "技术匹配度", priceSens: "价格敏感度", interaction: "交互强度 (FECC)",
-                copilot: "副驾驶建议", suggestion1: "客户关注 PCB 耐久度。建议：展示压力测试报告。", suggestion2: "会议即将结束。建议：主动提议寄送样品。",
-                speakers: { client: "客户 (US)", sales: "销售 (SZ)", ai: "AI 助手" },
-                transcripts: [
-                    { time: "10:02:15", speaker: "客户 (US)", text: "能再让我看下芯片的细节吗？", tag: "兴趣", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "销售 (SZ)", text: "没问题，我现在用微距镜头放大。", tag: "演示", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "客户 (US)", text: "哇，焊点很干净。公差是多少？", tag: "技术", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI 助手", text: ">> 检测到关于“公差”的技术询问。建议提供 V2 规格书。", tag: "洞察", sentiment: "system" },
-                ]
-            },
-            en: {
-                headerTitle: "DeepInsight Engine", liveStatus: "LIVE ANALYSIS", exportBtn: "Export Report", notifyBtn: "Notify MPO Team",
-                feedTitle: "Client Video Feed (Encrypted)", gaze: "Gaze: Focused on Product", intent: "Intent: Technical Validation",
-                transcriptTitle: "Live Transcript & Insights", dealTitle: "Deal Probability Score",
-                aiPred: "AI Prediction: High probability of moving to sample testing phase based on technical inquiries.",
-                engagement: "Engagement", sentiment: "Sentiment", techFit: "Technical Fit", priceSens: "Pricing Sensitivity", interaction: "Interaction (FECC)",
-                copilot: "Co-pilot Suggestions", suggestion1: "Client focused on PCB durability. Action: Show stress test report.", suggestion2: "Meeting ending soon. Action: Propose sending samples.",
-                speakers: { client: "Client (US)", sales: "Sales (SZ)", ai: "AI Assistant" },
-                transcripts: [
-                    { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
-                ]
-            }
-        };
-
-        const ProgressBar = ({ value, color, label }) => (
-            <div className="mb-4">
-                <div className="flex justify-between text-xs mb-1"><span className="text-slate-400">{label}</span><span className="text-white font-mono">{Math.round(value)}%</span></div>
-                <div className="w-full bg-slate-800 rounded-full h-2"><div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div></div>
-            </div>
-        );
-
-        const InsightCard = ({ title, iconName, value, trend, color, iconColorClass }) => (
-            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
-                <div className="flex justify-between items-start mb-2">
-                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}><Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} /></div>
-                    {trend && <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>{trend > 0 ? '+' : ''}{trend}%</span>}
-                </div>
-                <div className="text-2xl font-bold text-white mb-1">{value}</div>
-                <div className="text-xs text-slate-400">{title}</div>
-            </div>
-        );
-
-        const AiDashboard = () => {
-            const [lang, setLang] = useState('zh');
-            const liveStats = useLiveData();
-            const content = contentDict[lang];
-
-            useEffect(() => {
-                const handleLangChange = (e) => setLang(e.detail.lang);
-                window.addEventListener('langChange', handleLangChange);
-                return () => window.removeEventListener('langChange', handleLangChange);
-            }, []);
-
             return (
                 <div className="bg-slate-950 text-slate-200 font-sans p-4 md:p-8 rounded-3xl border border-slate-800 shadow-2xl mx-auto max-w-7xl text-start">
-                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
+                    {/* Header */}
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20"><Icon name="Brain" className="text-white" /></div>
-                            <div><h1 className="text-xl font-bold text-white tracking-tight m-0">{content.headerTitle}</h1><p className="text-xs text-slate-400 flex items-center gap-2 m-0"><span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>{content.liveStatus} • ID: #DC-9928-US</p></div>
-                        </div>
-                        <div className="flex gap-4">
-                            <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition text-white border-0">{content.exportBtn}</button>
-                            <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0">{content.notifyBtn}</button>
-                        </div>
-                    </header>
-                    <div className="grid grid-cols-12 gap-6">
-                        <div className="col-span-12 lg:col-span-8 space-y-6">
-                            <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
-                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center text-center opacity-30"><Icon name="Users" className="text-6xl text-slate-400 mb-4" /><p>{content.feedTitle}</p></div>
-                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2"><Icon name="Eye" className="text-green-400" /><span className="text-xs text-green-400 font-mono">{content.gaze}</span></div>
-                            </div>
-                            <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
-                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center"><Icon name="MessageSquare" className="mr-2" /> {content.transcriptTitle}</h3>
-                                <div className="space-y-4">{content.transcripts.map((t, i) => (<div key={i} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}><div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div><div><div className="flex items-center gap-2 mb-1"><span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>{t.speaker}</span>{t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}</div><p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p></div></div>))}</div>
+                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center"><Icon name="Brain" className="text-white" /></div>
+                            <div>
+                                <h1 className="text-lg font-bold text-white m-0">{t.title}</h1>
+                                <p className="text-xs text-slate-400 flex items-center gap-2 m-0"><span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> {t.status}</p>
                             </div>
                         </div>
-                        <div className="col-span-12 lg:col-span-4 space-y-6">
-                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden"><div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div><div className="relative z-10"><h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2"><Icon name="Target" /> {content.dealTitle}</h2><div className="flex items-baseline gap-2"><span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span><span className="text-sm text-slate-400">/ 100</span></div><p className="text-xs text-slate-500 mt-3">{content.aiPred}</p></div></div>
-                            <div className="grid grid-cols-2 gap-4"><InsightCard title={content.engagement} value={`${Math.round(liveStats.attention)}%`} iconName="Eye" trend={5} color="bg-purple-500" iconColorClass="text-purple-500" /><InsightCard title={content.sentiment} value={`${Math.round(liveStats.sentiment)}`} iconName="Activity" trend={2} color="bg-green-500" iconColorClass="text-green-500" /></div>
-                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800"><h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2"><Icon name="Activity" className="text-cyan-500" /> Real-time Indicators</h3><ProgressBar label={content.techFit} value={85} color="bg-cyan-500" /><ProgressBar label={content.priceSens} value={30} color="bg-yellow-500" /></div>
+                    </div>
+
+                    {/* Mobile Stack Layout */}
+                    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6">
+                        {/* Video Feed */}
+                        <div className="lg:col-span-8 order-1">
+                            <div className="bg-black rounded-xl border border-slate-800 overflow-hidden relative aspect-video mb-4">
+                                <div className="absolute inset-0 flex items-center justify-center opacity-30"><Icon name="Users" className="text-5xl text-slate-400" /></div>
+                                <div className="absolute top-3 right-3 bg-black/60 px-2 py-1 rounded-full border border-green-500/30 flex items-center gap-1">
+                                    <Icon name="Eye" className="text-green-400 text-xs" /><span className="text-[10px] text-green-400">Focused</span>
+                                </div>
+                                <div className="absolute bottom-3 left-3 right-3">
+                                    <div className="bg-slate-900/80 backdrop-blur-md p-2 rounded border-l-2 border-cyan-500 text-xs text-slate-300">
+                                        <span className="text-cyan-400 font-bold">Client:</span> "What's the tolerance?"
+                                    </div>
+                                </div>
+                            </div>
+                            {/* Transcript Box (Simplified for mobile) */}
+                            <div className="bg-slate-900 rounded-xl border border-slate-800 p-4 h-40 overflow-y-auto text-sm">
+                                <div className="text-xs text-slate-500 uppercase mb-2 font-bold">Transcript</div>
+                                <div className="space-y-2">
+                                    <div className="flex gap-2"><span className="text-cyan-400 font-bold text-xs">AI:</span> <span className="text-slate-400 text-xs">Detected tech inquiry.</span></div>
+                                    <div className="flex gap-2"><span className="text-white font-bold text-xs">Client:</span> <span className="text-slate-300 text-xs">Soldering looks clean.</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Data Panel */}
+                        <div className="lg:col-span-4 order-2 space-y-4">
+                            {/* Deal Score */}
+                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-5 rounded-xl border border-slate-700">
+                                <div className="text-slate-400 text-xs font-bold uppercase mb-2 flex items-center gap-2"><Icon name="Target" /> {t.score}</div>
+                                <div className="flex items-baseline gap-2"><span className="text-4xl font-bold text-white">68</span><span className="text-xs text-slate-500">/ 100</span></div>
+                            </div>
+                            {/* Stats */}
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                                    <div className="text-xs text-slate-400 mb-1">Engagement</div>
+                                    <div className="text-xl font-bold text-white">85%</div>
+                                </div>
+                                <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                                    <div className="text-xs text-slate-400 mb-1">Sentiment</div>
+                                    <div className="text-xl font-bold text-white">72</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             );
         };
 
-        // Render Roots
         const dashboardRoot = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
         dashboardRoot.render(<AiDashboard />);
         
