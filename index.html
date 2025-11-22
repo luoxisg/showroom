@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DCDeepTech | 全球全时段数字展厅解决方案</title>
+    
+    <!-- 1. Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 3. Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- 4. React & Babel (用于运行您提供的 React 代码) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 5. Tailwind CSS (用于 React 组件样式) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // 配置 Tailwind 以防止与 Bootstrap 冲突
+        tailwind.config = {
+            corePlugins: {
+                preflight: false, // 禁用基础样式重置，保护 Bootstrap
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #0a2540; /* 深蓝 */
+            --accent-color: #00d4ff; /* 科技蓝亮色 */
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            background-color: rgba(10, 37, 64, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        .navbar-brand { font-weight: 700; color: white !important; }
+        .nav-link { color: rgba(255,255,255,0.8) !important; transition: color 0.3s; }
+        .nav-link:hover { color: var(--accent-color) !important; }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #0a2540 0%, #001529 100%);
+            color: white;
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .btn-cta {
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .btn-cta:hover { transform: translateY(-3px); background-color: #fff; color: var(--primary-color); }
+
+        /* Common Sections */
+        .section-padding { padding: 80px 0; }
+        .section-title { font-weight: 700; margin-bottom: 1rem; color: var(--primary-color); text-align: center; }
+        .section-subtitle { text-align: center; color: #666; margin-bottom: 3rem; max-width: 700px; margin: 0 auto 3rem auto; }
+
+        /* Cards */
+        .triangle-card {
+            border: none; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            height: 100%; overflow: hidden; transition: transform 0.3s;
+        }
+        .triangle-card:hover { transform: translateY(-10px); }
+        .card-header-custom { background-color: var(--primary-color); color: white; padding: 20px; text-align: center; }
+        
+        /* Pricing */
+        .pricing-card { border: 1px solid #eee; border-radius: 15px; padding: 40px; text-align: center; transition: 0.3s; background: white; }
+        .pricing-card.featured { border: 2px solid var(--primary-color); background-color: #fcfcfc; transform: scale(1.05); z-index: 1; }
+        
+        /* Footer */
+        footer { background-color: var(--primary-color); color: white; padding: 50px 0; }
+
+        /* React Container Adjustment */
+        #react-dashboard-root {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-cube me-2"></i>DCDeepTech</a>
+            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#golden-triangle">核心架构</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">沉浸体验</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ai">AI 引擎</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">方案报价</a></li>
+                    <li class="nav-item ms-3"><a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">联系我们</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="hero-section d-flex align-items-center">
+        <div class="container text-center z-1 position-relative">
+            <h1 class="hero-title">永不打烊的全球旗舰店<br><span style="color: var(--accent-color);">24/7 沉浸式数字展厅</span></h1>
+            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 800px;">
+                解决跨境网络黑洞、高昂夜班人力与展示细节缺失三大痛点。<br>
+                深圳硬件 + 新加坡通道 + 菲律宾服务 = 全球销售引擎。
+            </p>
+            <a href="#contact" class="btn btn-cta btn-lg shadow-lg">
+                <i class="fas fa-bolt me-2"></i> 免费获取 <150ms RTT 网络测试报告
+            </a>
+        </div>
+    </header>
+
+    <!-- Module 2: Golden Triangle -->
+    <section id="golden-triangle" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">核心架构：地缘套利“黄金三角”</h2>
+            <p class="section-subtitle">整合三地优势，消除物理距离摩擦。</p>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="triangle-card bg-white">
+                        <div class="card-header-custom">
+                            <div class="fs-1 mb-2 text-info"><i class="fas fa-industry"></i></div>
+                            <h4>深圳 · 物理核心</h4>
+                        </div>
+                        <div class="p-4">
+                            <p class="card-text small">产品库与研发总部。提供工业光学 PTZ 展厅，展示精密硬件细节。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="triangle-card bg-white">
+                        <div class="card-header-custom" style="background-color: #00509d;">
+                            <div class="fs-1 mb-2 text-info"><i class="fas fa-network-wired"></i></div>
+                            <h4>新加坡 · 数字枢纽</h4>
+                        </div>
+                        <div class="p-4">
+                            <p class="card-text small">合规数据路由与低延迟中转。利用 IEPL 专线弥合网络差距。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="triangle-card bg-white">
+                        <div class="card-header-custom" style="background-color: #0077b6;">
+                            <div class="fs-1 mb-2 text-info"><i class="fas fa-headset"></i></div>
+                            <h4>菲律宾 · 运营引擎</h4>
+                        </div>
+                        <div class="p-4">
+                            <p class="card-text small">24/7 市场流程外包 (MPO)。英语原生团队实现“跟随太阳”服务。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 4: Experience -->
+    <section id="experience" class="section-padding bg-dark text-white">
+        <div class="container">
+            <h2 class="section-title text-white">数字孪生体验</h2>
+            <p class="section-subtitle text-white-50">超越 Zoom 的上帝视角。</p>
+            <div class="row text-center mt-5">
+                <div class="col-md-3 mb-4">
+                    <div class="fs-1 text-info mb-3"><i class="fas fa-video"></i></div>
+                    <h5>多流架构</h5>
+                    <p class="small text-white-50">全景 + 微距 + 人像三流同推</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="fs-1 text-info mb-3"><i class="fas fa-hand-pointer"></i></div>
+                    <h5>用户自主视角</h5>
+                    <p class="small text-white-50">客户自由 Pin 选画面</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="fs-1 text-info mb-3"><i class="fas fa-gamepad"></i></div>
+                    <h5>远程云台 (FECC)</h5>
+                    <p class="small text-white-50">客户亲自控制摄像头缩放</p>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="fs-1 text-info mb-3"><i class="fas fa-magic"></i></div>
+                    <h5>实时包装</h5>
+                    <p class="small text-white-50">ZoomISO 广播级画面增强</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 5: AI (REACT COMPONENT INTEGRATION HERE) -->
+    <section id="ai" class="section-padding" style="background-color: #0f172a;">
+        <div class="container">
+            <div class="row mb-5 text-center">
+                <div class="col-12">
+                    <h2 class="text-white fw-bold">DeepInsight AI 决策引擎</h2>
+                    <p class="text-white-50">实时演示：视觉、语音与行为数据的实时量化</p>
+                </div>
+            </div>
+            
+            <!-- React App Mount Point -->
+            <div id="react-dashboard-root"></div>
+            
+            <div class="row mt-5 text-white">
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-eye fa-2x text-info mb-3"></i>
+                    <h5>视觉专注度追踪</h5>
+                    <p class="small text-white-50">识别客户眼神停留及 FECC 控制热点。</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-microphone-alt fa-2x text-info mb-3"></i>
+                    <h5>语音意图识别</h5>
+                    <p class="small text-white-50">区分技术询问与商务谈判意图。</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-chart-line fa-2x text-info mb-3"></i>
+                    <h5>DeepScore 评分</h5>
+                    <p class="small text-white-50">计算即时成交概率，辅助销售决策。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 7: Pricing -->
+    <section id="pricing" class="section-padding bg-light">
+        <div class="container">
+            <h2 class="section-title">方案报价</h2>
+            <div class="row justify-content-center mt-5">
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h4>标准级方案</h4>
+                        <h2 class="my-3 text-primary">$14,000 <small class="fs-6 text-muted">起</small></h2>
+                        <p class="text-muted small">全国产硬件 / 1080p 双流</p>
+                        <hr>
+                        <p class="fw-bold mb-1">OpEx (月费):</p>
+                        <p>$4,300 起 (含专线+MPO)</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card featured shadow">
+                        <div class="badge bg-primary mb-3">推荐</div>
+                        <h4>旗舰级方案</h4>
+                        <h2 class="my-3 text-primary">$21,000 <small class="fs-6 text-muted">起</small></h2>
+                        <p class="text-muted small">Sony FR7 / 4K 多流 / 完整AI</p>
+                        <hr>
+                        <p class="fw-bold mb-1">OpEx (月费):</p>
+                        <p>$5,000 起 (含专线+MPO)</p>
+                        <button class="btn btn-primary w-100 rounded-pill mt-3">咨询此方案</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center small">
+        <div class="container">
+            <p>&copy; 2024 DCDeepTech Solutions. All Rights Reserved.</p>
+            <p class="text-white-50">Shenzhen • Singapore • Manila</p>
+        </div>
+    </footer>
+
+    <!-- REACT LOGIC SCRIPT -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // 1. 图标映射组件 (替换 Lucide 为 FontAwesome 以减少依赖)
+        const Icon = ({ name, className }) => {
+            const icons = {
+                Activity: "fas fa-chart-line",
+                Mic: "fas fa-microphone",
+                Eye: "fas fa-eye",
+                Video: "fas fa-video",
+                TrendingUp: "fas fa-arrow-up",
+                AlertCircle: "fas fa-exclamation-circle",
+                CheckCircle: "fas fa-check-circle",
+                Brain: "fas fa-brain",
+                Users: "fas fa-users",
+                Clock: "fas fa-clock",
+                Target: "fas fa-bullseye",
+                MessageSquare: "fas fa-comment-alt",
+                DollarSign: "fas fa-dollar-sign"
+            };
+            // 将 Tailwind 的颜色类转换为 FontAwesome 可以继承的样式，或者保留 className
+            return <i className={`${icons[name] || 'fas fa-question'} ${className}`}></i>;
+        };
+
+        // 2. 数据模拟 Hook
+        const useLiveData = () => {
+            const [data, setData] = useState({
+                sentiment: 65,
+                attention: 80,
+                dealScore: 42,
+            });
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    setData(prev => {
+                        const change = Math.random() > 0.5 ? 1 : -1;
+                        const newSentiment = Math.min(100, Math.max(0, prev.sentiment + change * Math.random() * 5));
+                        const newAttention = Math.min(100, Math.max(0, prev.attention + change * Math.random() * 5));
+                        const newDealScore = (newSentiment * 0.3 + newAttention * 0.3 + 40); 
+
+                        return { ...prev, sentiment: newSentiment, attention: newAttention, dealScore: newDealScore };
+                    });
+                }, 2000);
+                return () => clearInterval(interval);
+            }, []);
+            return data;
+        };
+
+        // 3. 子组件
+        const ProgressBar = ({ value, color = "bg-cyan-500", label }) => (
+            <div className="mb-4">
+                <div className="flex justify-between text-xs mb-1">
+                    <span className="text-slate-400">{label}</span>
+                    <span className="text-white font-mono">{Math.round(value)}%</span>
+                </div>
+                <div className="w-full bg-slate-800 rounded-full h-2">
+                    <div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div>
+                </div>
+            </div>
+        );
+
+        const InsightCard = ({ title, iconName, value, trend, color, iconColorClass }) => (
+            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
+                <div className="flex justify-between items-start mb-2">
+                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}>
+                        <Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} />
+                    </div>
+                    {trend && (
+                        <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                            {trend > 0 ? '+' : ''}{trend}%
+                        </span>
+                    )}
+                </div>
+                <div className="text-2xl font-bold text-white mb-1">{value}</div>
+                <div className="text-xs text-slate-400">{title}</div>
+            </div>
+        );
+
+        // 4. 主 App 组件
+        const App = () => {
+            const liveStats = useLiveData();
+            
+            const transcripts = [
+                { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
+                { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
+                { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
+                { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
+            ];
+
+            return (
+                <div className="bg-slate-950 text-slate-200 font-sans p-4 md:p-8 rounded-3xl border border-slate-800 shadow-2xl mx-auto max-w-7xl">
+                    {/* Header */}
+                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20">
+                                <Icon name="Brain" className="text-white" />
+                            </div>
+                            <div>
+                                <h1 className="text-xl font-bold text-white tracking-tight m-0">DeepInsight Engine</h1>
+                                <p className="text-xs text-slate-400 flex items-center gap-2 m-0">
+                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                    LIVE ANALYSIS • Session ID: #DC-9928-US
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition text-white border-0">Export Report</button>
+                            <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0">Notify MPO Team</button>
+                        </div>
+                    </header>
+
+                    <div className="grid grid-cols-12 gap-6 text-start">
+                        
+                        {/* Left Column: Video Feed & Transcript */}
+                        <div className="col-span-12 lg:col-span-8 space-y-6">
+                            {/* Video Feed Simulation */}
+                            <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
+                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
+                                    <div className="text-center opacity-30">
+                                        <Icon name="Users" className="text-6xl text-slate-400 mb-4" />
+                                        <p>Client Video Feed (Encrypted)</p>
+                                    </div>
+                                </div>
+                                {/* Overlays */}
+                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2">
+                                    <Icon name="Eye" className="text-green-400" />
+                                    <span className="text-xs text-green-400 font-mono">Gaze: Focused on Product</span>
+                                </div>
+                                <div className="absolute bottom-8 left-8 right-8">
+                                    <div className="bg-slate-900/80 backdrop-blur-md p-4 rounded-xl border-l-4 border-cyan-500">
+                                        <p className="text-sm text-slate-300 mb-2"><span className="text-cyan-400 font-bold">Client:</span> "The soldering looks very clean. What's the tolerance?"</p>
+                                        <div className="flex gap-2">
+                                            <span className="text-[10px] px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">Intent: Technical Validation</span>
+                                            <span className="text-[10px] px-2 py-0.5 bg-green-500/20 text-green-300 rounded border border-green-500/30">Sentiment: Positive (0.85)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Face Detect Box */}
+                                <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-cyan-500/30 rounded-lg pointer-events-none">
+                                    <div className="absolute -top-3 left-0 text-[10px] bg-cyan-500/20 text-cyan-300 px-1">Face Detect</div>
+                                </div>
+                            </div>
+
+                            {/* Transcript */}
+                            <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
+                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center">
+                                    <Icon name="MessageSquare" className="mr-2" /> Live Transcript & Insights
+                                </h3>
+                                <div className="space-y-4">
+                                    {transcripts.map((t, idx) => (
+                                        <div key={idx} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}>
+                                            <div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div>
+                                            <div>
+                                                <div className="flex items-center gap-2 mb-1">
+                                                    <span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>
+                                                        {t.speaker}
+                                                    </span>
+                                                    {t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}
+                                                </div>
+                                                <p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column: Stats */}
+                        <div className="col-span-12 lg:col-span-4 space-y-6">
+                            {/* Deal Score */}
+                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+                                <div className="relative z-10">
+                                    <h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2">
+                                        <Icon name="Target" /> Deal Probability Score
+                                    </h2>
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span>
+                                        <span className="text-sm text-slate-400">/ 100</span>
+                                    </div>
+                                    <div className="mt-4 space-y-2">
+                                        <div className="flex items-center gap-2 text-xs text-green-400">
+                                            <Icon name="TrendingUp" />
+                                            <span>+12% vs. Start</span>
+                                        </div>
+                                        <p className="text-xs text-slate-500 mt-2">
+                                            AI Prediction: High probability of moving to sample testing.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Cards Grid */}
+                            <div className="grid grid-cols-2 gap-4">
+                                <InsightCard 
+                                    title="Engagement" 
+                                    value={`${Math.round(liveStats.attention)}%`} 
+                                    iconName="Eye" 
+                                    trend={5}
+                                    color="bg-purple-500"
+                                    iconColorClass="text-purple-500"
+                                />
+                                <InsightCard 
+                                    title="Sentiment" 
+                                    value={`${Math.round(liveStats.sentiment)}`} 
+                                    iconName="Activity" 
+                                    trend={2}
+                                    color="bg-green-500"
+                                    iconColorClass="text-green-500" 
+                                />
+                            </div>
+
+                            {/* Indicators */}
+                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                                <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2">
+                                    <Icon name="Activity" className="text-cyan-500" /> Real-time Indicators
+                                </h3>
+                                <ProgressBar label="Technical Fit" value={85} color="bg-cyan-500" />
+                                <ProgressBar label="Pricing Sensitivity" value={30} color="bg-yellow-500" />
+                                <ProgressBar label="Interaction (FECC)" value={72} color="bg-purple-500" />
+                            </div>
+
+                            {/* Suggestions */}
+                            <div className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-5 rounded-xl border border-indigo-500/30">
+                                <h4 className="text-xs font-bold text-indigo-300 uppercase mb-3 flex items-center gap-2">
+                                    <Icon name="AlertCircle" /> Co-pilot Suggestions
+                                </h4>
+                                <ul className="space-y-3 pl-0 mb-0">
+                                    <li className="flex gap-3 text-sm text-slate-300">
+                                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0"></div>
+                                        <span>Client focused on PCB durability. <strong>Action:</strong> Show stress test.</span>
+                                    </li>
+                                    <li className="flex gap-3 text-sm text-slate-300">
+                                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-1.5 shrink-0"></div>
+                                        <span>Meeting ending soon. <strong>Action:</strong> Propose sending samples.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
+        root.render(<App />);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
