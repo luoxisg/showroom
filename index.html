@@ -1,2043 +1,4 @@
-Skip to main content
-DCDeepTech Global Digital Showroom.
-45,065 tokens
-
-Model
-ThinkingThoughts
-Expand to view model thoughts
-
-chevron_right
-这是一个为您编写的完整单页式（One-Page）HTML 网站代码。它基于 Bootstrap 5 框架构建，以确保响应式布局（适配手机和桌面）和现代化的企业级外观。
-设计风格： 科技蓝/深邃黑为主色调，体现“DeepTech”的专业感，配合清晰的排版以展示 B2B 价值主张。
-使用说明：
-新建一个文本文件，命名为 index.html。
-将下方的完整代码复制并粘贴进去。
-保存并双击打开，即可在浏览器中预览。
-code
-Html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCDeepTech | 全球全时段数字展厅解决方案</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #0a2540; /* 深蓝 */
-            --accent-color: #00d4ff; /* 科技蓝亮色 */
-            --secondary-bg: #f8f9fa;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            background-color: rgba(10, 37, 64, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        .navbar-brand {
-            font-weight: 700;
-            color: white !important;
-        }
-        .nav-link {
-            color: rgba(255,255,255,0.8) !important;
-            transition: color 0.3s;
-        }
-        .nav-link:hover {
-            color: var(--accent-color) !important;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #0a2540 0%, #001529 100%);
-            color: white;
-            padding: 160px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://source.unsplash.com/1600x900/?network,technology') no-repeat center center;
-            opacity: 0.1;
-            background-size: cover;
-        }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 2rem;
-        }
-        .btn-cta {
-            background-color: var(--accent-color);
-            color: #000;
-            font-weight: 700;
-            padding: 12px 30px;
-            border-radius: 50px;
-            border: none;
-            transition: transform 0.2s;
-        }
-        .btn-cta:hover {
-            transform: translateY(-3px);
-            background-color: #fff;
-            color: var(--primary-color);
-        }
-
-        /* Section Styling */
-        .section-padding {
-            padding: 80px 0;
-        }
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Golden Triangle Cards */
-        .triangle-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            height: 100%;
-            overflow: hidden;
-        }
-        .triangle-card:hover {
-            transform: translateY(-10px);
-        }
-        .card-header-custom {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: var(--accent-color);
-        }
-
-        /* Features */
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(0, 212, 255, 0.1);
-            color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Stats / Network */
-        .stat-box {
-            text-align: center;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #eee;
-        }
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        .stat-label {
-            font-size: 1.1rem;
-            color: #666;
-        }
-
-        /* Pricing */
-        .pricing-card {
-            border: 1px solid #eee;
-            border-radius: 15px;
-            padding: 40px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .pricing-card.featured {
-            border: 2px solid var(--primary-color);
-            background-color: #fcfcfc;
-            transform: scale(1.05);
-            position: relative;
-            z-index: 1;
-        }
-        .price-tag {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 20px 0;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 50px 0;
-        }
-        
-        /* Utility */
-        .text-accent {
-            color: var(--accent-color);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-cube me-2"></i>DCDeepTech</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#golden-triangle">核心架构</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#network">低时延网络</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">沉浸体验</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ai">DeepInsight AI</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">方案报价</a></li>
-                    <li class="nav-item ms-3"><a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">联系我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header / Hero Section -->
-    <header class="hero-section d-flex align-items-center">
-        <div class="container text-center z-1 position-relative">
-            <h1 class="hero-title">永不打烊的全球旗舰店<br><span class="text-accent">24/7 沉浸式数字展厅</span></h1>
-            <p class="hero-subtitle mx-auto" style="max-width: 800px;">
-                将您的硬件创新瞬时交付给欧美客户。解决 <b>跨境网络黑洞</b>、<b>高昂夜班人力</b>、<b>缺乏沉浸式细节</b> 三大痛点。<br>
-                一套系统，实现 深圳硬件 + 新加坡通道 + 菲律宾服务 的全球销售引擎。
-            </p>
-            <div class="mt-4">
-                <a href="#contact" class="btn btn-cta btn-lg shadow-lg">
-                    <i class="fas fa-file-contract me-2"></i> 免费获取 <150ms RTT 跨境网络测试报告
-                </a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Module 2: Golden Triangle -->
-    <section id="golden-triangle" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">核心架构：地缘套利“黄金三角”</h2>
-            <p class="section-subtitle">通过整合三地优势，消除物理距离产生的摩擦，为您打造全球化销售闭环。</p>
-            
-            <div class="row g-4">
-                <!-- Shenzhen -->
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom">
-                            <div class="card-icon"><i class="fas fa-industry"></i></div>
-                            <h4>深圳 · 物理核心</h4>
-                        </div>
-                        <div class="p-4">
-                            <ul class="list-unstyled">
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>产品研发总部：</strong> 依托珠三角强大供应链，作为物理产品库。</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>高保真展厅：</strong> 配备工业光学 PTZ 系统，展示难以运输的重型或精密产品。</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i><strong>深度技术支持：</strong> 工程师日间驻场，解决复杂技术难题。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Singapore -->
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom" style="background-color: #00509d;">
-                            <div class="card-icon"><i class="fas fa-server"></i></div>
-                            <h4>新加坡 · 数字枢纽</h4>
-                        </div>
-                        <div class="p-4">
-                            <ul class="list-unstyled">
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>数据路由中心：</strong> 稳定、合规的司法管辖区。</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>低延迟中转：</strong> 利用高容量海底光缆，弥合“防火墙”差距。</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i><strong>数据合规：</strong> 确保欧美客户数据的安全路由与 GDPR 兼容性。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Philippines -->
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom" style="background-color: #0077b6;">
-                            <div class="card-icon"><i class="fas fa-headset"></i></div>
-                            <h4>菲律宾 · 运营引擎</h4>
-                        </div>
-                        <div class="p-4">
-                            <ul class="list-unstyled">
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>24/7 MPO 中心：</strong> 市场流程外包，完美覆盖欧美时区。</li>
-                                <li class="mb-3"><i class="fas fa-check-circle text-primary me-2"></i><strong>零停机响应：</strong> 在深圳下班后远程接管展厅控制权。</li>
-                                <li><i class="fas fa-check-circle text-primary me-2"></i><strong>原生英语人才：</strong> 拥有成熟的“直播电商基因”，专业且低成本。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 3: Network -->
-    <section id="network" class="section-padding">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start">穿越国界的低时延网络</h2>
-                    <p class="lead mb-4">告别跨境视频卡顿与“黑洞”效应。您的产品在客户屏幕上如同在现场一般流畅。</p>
-                    
-                    <div class="d-flex mb-4">
-                        <div class="me-4">
-                            <h3 class="text-danger fw-bold">15-20%</h3>
-                            <small>传统公网晚高峰丢包率</small>
-                        </div>
-                        <div>
-                            <h3 class="text-danger fw-bold">250ms+</h3>
-                            <small>传统网络 RTT 延迟</small>
-                        </div>
-                    </div>
-
-                    <div class="card bg-light border-0 p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-rocket fa-2x text-primary me-3"></i>
-                            <div>
-                                <h5 class="mb-1">Tier-1 物理专线 (IEPL/CN2 GIA)</h5>
-                                <p class="mb-0 small text-muted">构建深圳-新加坡低时延隧道，规避公共互联网拥塞。</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card bg-light border-0 p-3">
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-shield-alt fa-2x text-primary me-3"></i>
-                            <div>
-                                <h5 class="mb-1">SD-WAN + 前向纠错 (FEC)</h5>
-                                <p class="mb-0 small text-muted">即使数据包丢失也能重建视频，确保 < 0.1% 丢包率。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center">
-                    <div class="bg-white shadow-lg rounded-4 p-5 mt-4 mt-lg-0">
-                        <h6 class="text-muted text-uppercase">DCDeepTech 承诺指标</h6>
-                        <div class="display-1 fw-bold text-primary my-3">&lt; 150ms</div>
-                        <p class="fs-5">全球终端 RTT (往返时延)</p>
-                        <hr>
-                        <p class="text-success fw-bold"><i class="fas fa-check me-2"></i> 4K 视频 60fps 稳定传输</p>
-                        <p class="text-success fw-bold"><i class="fas fa-check me-2"></i> 毫秒级远程云台响应</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 4: Experience (Zoom Ecosystem) -->
-    <section id="experience" class="section-padding bg-dark text-white">
-        <div class="container">
-            <h2 class="section-title text-white">数字孪生与远程操控体验</h2>
-            <p class="section-subtitle text-light">基于深度定制的 Zoom 生态，赋予客户“在场感”和上帝视角。</p>
-
-            <div class="row mt-5">
-                <div class="col-md-6 col-lg-3 text-center mb-4">
-                    <div class="feature-icon mx-auto bg-primary text-white"><i class="fas fa-video"></i></div>
-                    <h5>多流架构</h5>
-                    <p class="small text-white-50">Zoom Rooms Multi-Camera Mode。同时推送全景 (Context)、微距 (Detail) 和演示者 (Human) 三路高清流。</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center mb-4">
-                    <div class="feature-icon mx-auto bg-primary text-white"><i class="fas fa-mouse-pointer"></i></div>
-                    <h5>用户自主视角</h5>
-                    <p class="small text-white-50">客户可自由“钉住”(Pin) 或“聚焦”任意视频流，模拟物理展厅中的自由走动探索。</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center mb-4">
-                    <div class="feature-icon mx-auto bg-primary text-white"><i class="fas fa-gamepad"></i></div>
-                    <h5>远程云台控制 (FECC)</h5>
-                    <p class="small text-white-50">客户通过 VISCA over IP 协议，亲自控制深圳展厅摄像头缩放/旋转，所见即所得。</p>
-                </div>
-                <div class="col-md-6 col-lg-3 text-center mb-4">
-                    <div class="feature-icon mx-auto bg-primary text-white"><i class="fas fa-film"></i></div>
-                    <h5>广播级制作</h5>
-                    <p class="small text-white-50">菲律宾团队利用 ZoomISO + NDI 实时包装画面，添加参数水印，实现“拍摄与制作分离”。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 5: AI & Module 6: Ops -->
-    <section id="ai" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <!-- AI Section -->
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h3 class="mb-4">DeepInsight AI <span class="badge bg-warning text-dark">销售加速器</span></h3>
-                    <p>从“连接管道”升级为“智能决策系统”。</p>
-                    <div class="accordion" id="aiAccordion">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                    <i class="fas fa-eye me-2"></i> 视觉智能 & 专注度追踪
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#aiAccordion">
-                                <div class="accordion-body">
-                                    记录客户远程控制摄像头 (FECC) 的目标，自动标记客户关注点（如“接口兼容性”或“PCB做工”）。所有分析在边缘端进行，保障 <strong>GDPR 合规</strong>。
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                    <i class="fas fa-microphone-alt me-2"></i> 语音语义意图识别
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#aiAccordion">
-                                <div class="accordion-body">
-                                    实时分析对话关键词，区分技术询问、商务询问和竞品对比，结合语调判断真实购买意向。
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
-                                    <i class="fas fa-chart-line me-2"></i> DeepScore 成交概率评分
-                                </button>
-                            </h2>
-                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#aiAccordion">
-                                <div class="accordion-body">
-                                    基于基础分(30%) + 行为分(30%) + 意向分(40%)，输出量化的销售线索评分。
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ops Section -->
-                <div class="col-lg-6 ps-lg-5">
-                    <h3 class="mb-4">24/7 MPO 协同运营</h3>
-                    <p>实施 <strong>“跟随太阳” (Follow-the-Sun)</strong> 协议，确保全球业务零停机。</p>
-                    
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                            <i class="fas fa-sun text-warning fs-4"></i>
-                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                <div>
-                                    <h6 class="mb-0">工程技术班 (深圳)</h6>
-                                    <p class="mb-0 opacity-75 small">09:00 - 18:00 (GMT+8)</p>
-                                </div>
-                                <small class="text-nowrap">技术深拆解</small>
-                            </div>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                            <i class="fas fa-moon text-primary fs-4"></i>
-                            <div class="d-flex gap-2 w-100 justify-content-between">
-                                <div>
-                                    <h6 class="mb-0">全球销售班 (菲律宾)</h6>
-                                    <p class="mb-0 opacity-75 small">18:00 - 09:00 (GMT+8)</p>
-                                </div>
-                                <small class="text-nowrap">欧美客户接待</small>
-                            </div>
-                        </a>
-                        <div class="list-group-item bg-light">
-                            <small><i class="fas fa-info-circle me-1"></i> <strong>降级预案：</strong> 若网络波动，MPO 团队立即切入 4K VOD 预录视频并实时配音，体验不中断。</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 7: Pricing -->
-    <section id="pricing" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">方案与投资概算</h2>
-            <p class="section-subtitle">相当于在欧美雇佣 1 名初级员工的成本，即可拥有好莱坞级画质的全球全时段销售引擎。</p>
-
-            <div class="row justify-content-center">
-                <!-- Standard Plan -->
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card bg-white">
-                        <h4>标准级方案</h4>
-                        <p class="text-muted">高性价比 / 信创需求首选</p>
-                        <div class="price-tag">$14,000 <span class="fs-6 text-muted fw-normal">起 (CapEx)</span></div>
-                        <ul class="list-unstyled text-start mb-4">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>全国产硬件 (Z CAM/Seeder)</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>1080p 双流传输</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>基础版 DeepInsight</li>
-                        </ul>
-                        <hr>
-                        <p class="small fw-bold">月度运营 OpEx:</p>
-                        <p class="small">$4,300 - $5,500 USD / 月<br><span class="text-muted">(含专线 + MPO人力)</span></p>
-                    </div>
-                </div>
-
-                <!-- Flagship Plan -->
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card featured shadow">
-                        <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-3 py-2">推荐方案</div>
-                        <h4>旗舰级方案</h4>
-                        <p class="text-muted">极致画质 / 广播级体验</p>
-                        <div class="price-tag">$21,000 <span class="fs-6 text-muted fw-normal">起 (CapEx)</span></div>
-                        <ul class="list-unstyled text-start mb-4">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Sony FR7 电影机 + Ross 摇臂</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>4K 多流 + ZoomISO 包装</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>完整版 AI 情绪/视线追踪</li>
-                        </ul>
-                        <hr>
-                        <p class="small fw-bold">月度运营 OpEx:</p>
-                        <p class="small">$5,000 - $6,000 USD / 月<br><span class="text-muted">(含专线 + MPO人力)</span></p>
-                        <button class="btn btn-primary w-100 rounded-pill mt-3">咨询此方案</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer / Contact -->
-    <section id="contact" class="bg-dark text-white py-5">
-        <div class="container text-center">
-            <h2 class="mb-4">像高铁一样连接您的工厂与世界</h2>
-            <p class="mb-5 mx-auto" style="max-width: 600px;">
-                DCDeepTech 的数字展厅就像一条定制的高速跨洋铁路。新加坡是中转站，菲律宾团队是24小时服务员，确保您的产品细节在到达客户眼前时，没有任何“颠簸”。
-            </p>
-            <a href="mailto:contact@dcdeeptech.com" class="btn btn-lg btn-cta">
-                立即联系 DCDeepTech (新加坡)
-            </a>
-            <p class="mt-4 text-muted small">联系深圳合作伙伴开启部署</p>
-        </div>
-    </section>
-
-    <footer class="text-center small">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p>&copy; 2023-2024 DCDeepTech Solutions. All Rights Reserved.</p>
-                    <p class="text-white-50">Shenzhen • Singapore • Manila</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-User
-add these """import React, { useState, useEffect } from 'react';
-import {
-Activity,
-Mic,
-Eye,
-Video,
-TrendingUp,
-AlertCircle,
-CheckCircle,
-Brain,
-Users,
-Clock,
-Target,
-MessageSquare,
-DollarSign
-} from 'lucide-react';
-// 模拟实时数据生成器
-const useLiveData = () => {
-const [data, setData] = useState({
-sentiment: 65, // 情感分数 0-100
-attention: 80, // 注意力分数 0-100
-dealScore: 42, // 成交概率
-keywords: [],
-transcript: [],
-alerts: []
-});
-useEffect(() => {
-const interval = setInterval(() => {
-setData(prev => {
-const change = Math.random() > 0.5 ? 1 : -1;
-const newSentiment = Math.min(100, Math.max(0, prev.sentiment + change * Math.random() * 5));
-const newAttention = Math.min(100, Math.max(0, prev.attention + change * Math.random() * 5));
-code
-Code
-// 简单的成交概率算法模拟
-    const newDealScore = (newSentiment * 0.3 + newAttention * 0.3 + 40); 
-
-    return {
-      ...prev,
-      sentiment: newSentiment,
-      attention: newAttention,
-      dealScore: newDealScore
-    };
-  });
-}, 2000);
-return () => clearInterval(interval);
-}, []);
-return data;
-};
-const ProgressBar = ({ value, color = "bg-cyan-500", label }) => (
-  <div className="mb-4">
-    <div className="flex justify-between text-xs mb-1">
-      <span className="text-slate-400">{label}</span>
-      <span className="text-white font-mono">{Math.round(value)}%</span>
-    </div>
-    <div className="w-full bg-slate-800 rounded-full h-2">
-      <div 
-        className={`h-2 rounded-full transition-all duration-1000 ${color}`} 
-        style={{ width: `${value}%` }}
-      ></div>
-    </div>
-  </div>
-);
-const InsightCard = ({ title, icon: Icon, value, trend, color }) => (
-  <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
-    <div className="flex justify-between items-start mb-2">
-      <div className={`p-2 rounded-lg ${color} bg-opacity-20`}>
-        <Icon className={`w-5 h-5 ${color.replace('bg-', 'text-')}`} />
-      </div>
-      {trend && (
-        <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-          {trend > 0 ? '+' : ''}{trend}%
-        </span>
-      )}
-    </div>
-    <div className="text-2xl font-bold text-white mb-1">{value}</div>
-    <div className="text-xs text-slate-400">{title}</div>
-  </div>
-);
-const App = () => {
-const liveStats = useLiveData();
-const [activeTab, setActiveTab] = useState('dashboard');
-// 模拟对话流
-const transcripts = [
-{ time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
-{ time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
-{ time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
-{ time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
-];
-return (
-<div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-white p-4 md:p-8">
-code
-Code
-{/* Header */}
-  <header className="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
-    <div className="flex items-center gap-3">
-      <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20">
-        <Brain className="text-white w-6 h-6" />
-      </div>
-      <div>
-        <h1 className="text-xl font-bold text-white tracking-tight">DeepInsight Engine</h1>
-        <p className="text-xs text-slate-400 flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          LIVE ANALYSIS • Session ID: #DC-9928-US
-        </p>
-      </div>
-    </div>
-    <div className="flex gap-4">
-       <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition">Export Report</button>
-       <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)]">Notify MPO Team</button>
-    </div>
-  </header>
-
-  <div className="grid grid-cols-12 gap-6">
-    
-    {/* Main Video Feed Simulation & Gaze Tracking */}
-    <div className="col-span-12 lg:col-span-8 space-y-6">
-      <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
-        {/* Simulated Video Feed Content */}
-        <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
-          <div className="text-center opacity-30">
-            <Users className="w-16 h-16 mx-auto mb-4" />
-            <p>Client Video Feed (Encrypted)</p>
-          </div>
-        </div>
-        
-        {/* AI Overlays */}
-        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2">
-          <Eye className="w-4 h-4 text-green-400" />
-          <span className="text-xs text-green-400 font-mono">Gaze: Focused on Product</span>
-        </div>
-
-        <div className="absolute bottom-8 left-8 right-8">
-           <div className="bg-slate-900/80 backdrop-blur-md p-4 rounded-xl border-l-4 border-cyan-500">
-              <p className="text-sm text-slate-300"><span className="text-cyan-400 font-bold">Client:</span> "The soldering looks very clean. What's the tolerance?"</p>
-              <div className="flex gap-2 mt-2">
-                <span className="text-[10px] px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">Intent: Technical Validation</span>
-                <span className="text-[10px] px-2 py-0.5 bg-green-500/20 text-green-300 rounded border border-green-500/30">Sentiment: Positive (0.85)</span>
-              </div>
-           </div>
-        </div>
-        
-        {/* Bounding Box Simulation */}
-        <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-cyan-500/30 rounded-lg">
-           <div className="absolute -top-3 left-0 text-[10px] bg-cyan-500/20 text-cyan-300 px-1">Face Detect</div>
-        </div>
-      </div>
-
-      {/* Real-time Transcript & Analysis */}
-      <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
-        <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center">
-          <MessageSquare className="w-4 h-4 mr-2" /> Live Transcript & Insights
-        </h3>
-        <div className="space-y-4">
-          {transcripts.map((t, idx) => (
-            <div key={idx} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}>
-               <div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div>
-               <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>
-                      {t.speaker}
-                    </span>
-                    {t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}
-                  </div>
-                  <p className={`text-sm ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p>
-               </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* Right Sidebar: Metrics & Deal Score */}
-    <div className="col-span-12 lg:col-span-4 space-y-6">
-      
-      {/* Deal Probability Card */}
-      <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-         <div className="relative z-10">
-            <h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2">
-              <Target className="w-4 h-4" /> Deal Probability Score
-            </h2>
-            <div className="flex items-baseline gap-2">
-              <span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span>
-              <span className="text-sm text-slate-400">/ 100</span>
-            </div>
-            
-            <div className="mt-4 space-y-2">
-              <div className="flex items-center gap-2 text-xs text-green-400">
-                 <TrendingUp className="w-3 h-3" />
-                 <span>+12% vs. Start of Meeting</span>
-              </div>
-              <p className="text-xs text-slate-500 mt-2">
-                AI Prediction: High probability of moving to sample testing phase based on "Tolerance" and "Chip Detail" inquiries.
-              </p>
-            </div>
-         </div>
-      </div>
-
-      {/* Core Metrics Grid */}
-      <div className="grid grid-cols-2 gap-4">
-        <InsightCard 
-          title="Engagement" 
-          value={`${Math.round(liveStats.attention)}%`} 
-          icon={Eye} 
-          trend={5}
-          color="bg-purple-500" 
-        />
-        <InsightCard 
-          title="Sentiment" 
-          value={`${Math.round(liveStats.sentiment)}/100`} 
-          icon={Activity} 
-          trend={2}
-          color="bg-green-500" 
-        />
-      </div>
-
-      {/* Detailed Analysis Bars */}
-      <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-        <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2">
-          <Activity className="w-4 h-4 text-cyan-500" /> Real-time Indicators
-        </h3>
-        <ProgressBar label="Technical Fit (Keyword Match)" value={85} color="bg-cyan-500" />
-        <ProgressBar label="Pricing Sensitivity" value={30} color="bg-yellow-500" />
-        <ProgressBar label="Interaction Intensity (FECC Usage)" value={72} color="bg-purple-500" />
-      </div>
-
-      {/* AI Recommendations */}
-      <div className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-5 rounded-xl border border-indigo-500/30">
-         <h4 className="text-xs font-bold text-indigo-300 uppercase mb-3 flex items-center gap-2">
-            <AlertCircle className="w-3 h-3" /> Co-pilot Suggestions
-         </h4>
-         <ul className="space-y-3">
-           <li className="flex gap-3 text-sm text-slate-300">
-             <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0"></div>
-             <span>Client focused on PCB durability. <strong>Action:</strong> Show stress test report.</span>
-           </li>
-           <li className="flex gap-3 text-sm text-slate-300">
-             <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-1.5 shrink-0"></div>
-             <span>Meeting ending in 5 mins. <strong>Action:</strong> Propose sending samples.</span>
-           </li>
-         </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
-);
-};
-export default App;"""
-Model
-ThinkingThoughts
-Expand to view model thoughts
-
-chevron_right
-这是一个非常棒的想法。您提供的代码是一个基于 React + Tailwind CSS 的实时数据仪表盘，非常适合用来可视化展示 DeepInsight AI 的功能。
-为了将这段 React 代码整合进之前编写的 Bootstrap HTML 文件中，我们需要做一些特殊处理，因为原生 HTML 浏览器环境不能直接运行 JSX 和 React 模块。
-整合方案：
-引入 React 和 Babel 的 CDN，以便在浏览器中直接编译运行这段代码。
-引入 Tailwind CSS 的 CDN，并进行配置以避免与 Bootstrap 的样式发生冲突（禁用 Preflight）。
-将原代码中的 lucide-react 图标替换为页面已经存在的 FontAwesome 图标（为了保持轻量化，不引入额外的图标库）。
-将此仪表盘嵌入到“DeepInsight AI”板块中作为 “实时演示 (Live Demo)”。
-以下是整合后的完整 index.html 代码。您可以直接覆盖之前的文件。
-code
-Html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCDeepTech | 全球全时段数字展厅解决方案</title>
-    
-    <!-- 1. Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- 2. FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 3. Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- 4. React & Babel (用于运行您提供的 React 代码) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- 5. Tailwind CSS (用于 React 组件样式) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // 配置 Tailwind 以防止与 Bootstrap 冲突
-        tailwind.config = {
-            corePlugins: {
-                preflight: false, // 禁用基础样式重置，保护 Bootstrap
-            }
-        }
-    </script>
-    
-    <style>
-        :root {
-            --primary-color: #0a2540; /* 深蓝 */
-            --accent-color: #00d4ff; /* 科技蓝亮色 */
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            background-color: rgba(10, 37, 64, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
-        .navbar-brand { font-weight: 700; color: white !important; }
-        .nav-link { color: rgba(255,255,255,0.8) !important; transition: color 0.3s; }
-        .nav-link:hover { color: var(--accent-color) !important; }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #0a2540 0%, #001529 100%);
-            color: white;
-            padding: 160px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; }
-        .btn-cta {
-            background-color: var(--accent-color);
-            color: #000;
-            font-weight: 700;
-            padding: 12px 30px;
-            border-radius: 50px;
-            border: none;
-            transition: transform 0.2s;
-        }
-        .btn-cta:hover { transform: translateY(-3px); background-color: #fff; color: var(--primary-color); }
-
-        /* Common Sections */
-        .section-padding { padding: 80px 0; }
-        .section-title { font-weight: 700; margin-bottom: 1rem; color: var(--primary-color); text-align: center; }
-        .section-subtitle { text-align: center; color: #666; margin-bottom: 3rem; max-width: 700px; margin: 0 auto 3rem auto; }
-
-        /* Cards */
-        .triangle-card {
-            border: none; border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            height: 100%; overflow: hidden; transition: transform 0.3s;
-        }
-        .triangle-card:hover { transform: translateY(-10px); }
-        .card-header-custom { background-color: var(--primary-color); color: white; padding: 20px; text-align: center; }
-        
-        /* Pricing */
-        .pricing-card { border: 1px solid #eee; border-radius: 15px; padding: 40px; text-align: center; transition: 0.3s; background: white; }
-        .pricing-card.featured { border: 2px solid var(--primary-color); background-color: #fcfcfc; transform: scale(1.05); z-index: 1; }
-        
-        /* Footer */
-        footer { background-color: var(--primary-color); color: white; padding: 50px 0; }
-
-        /* React Container Adjustment */
-        #react-dashboard-root {
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-cube me-2"></i>DCDeepTech</a>
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#golden-triangle">核心架构</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">沉浸体验</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ai">AI 引擎</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">方案报价</a></li>
-                    <li class="nav-item ms-3"><a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">联系我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="hero-section d-flex align-items-center">
-        <div class="container text-center z-1 position-relative">
-            <h1 class="hero-title">永不打烊的全球旗舰店<br><span style="color: var(--accent-color);">24/7 沉浸式数字展厅</span></h1>
-            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 800px;">
-                解决跨境网络黑洞、高昂夜班人力与展示细节缺失三大痛点。<br>
-                深圳硬件 + 新加坡通道 + 菲律宾服务 = 全球销售引擎。
-            </p>
-            <a href="#contact" class="btn btn-cta btn-lg shadow-lg">
-                <i class="fas fa-bolt me-2"></i> 免费获取 <150ms RTT 网络测试报告
-            </a>
-        </div>
-    </header>
-
-    <!-- Module 2: Golden Triangle -->
-    <section id="golden-triangle" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">核心架构：地缘套利“黄金三角”</h2>
-            <p class="section-subtitle">整合三地优势，消除物理距离摩擦。</p>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-industry"></i></div>
-                            <h4>深圳 · 物理核心</h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">产品库与研发总部。提供工业光学 PTZ 展厅，展示精密硬件细节。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom" style="background-color: #00509d;">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-network-wired"></i></div>
-                            <h4>新加坡 · 数字枢纽</h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">合规数据路由与低延迟中转。利用 IEPL 专线弥合网络差距。</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="triangle-card bg-white">
-                        <div class="card-header-custom" style="background-color: #0077b6;">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-headset"></i></div>
-                            <h4>菲律宾 · 运营引擎</h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">24/7 市场流程外包 (MPO)。英语原生团队实现“跟随太阳”服务。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 4: Experience -->
-    <section id="experience" class="section-padding bg-dark text-white">
-        <div class="container">
-            <h2 class="section-title text-white">数字孪生体验</h2>
-            <p class="section-subtitle text-white-50">超越 Zoom 的上帝视角。</p>
-            <div class="row text-center mt-5">
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-video"></i></div>
-                    <h5>多流架构</h5>
-                    <p class="small text-white-50">全景 + 微距 + 人像三流同推</p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-hand-pointer"></i></div>
-                    <h5>用户自主视角</h5>
-                    <p class="small text-white-50">客户自由 Pin 选画面</p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-gamepad"></i></div>
-                    <h5>远程云台 (FECC)</h5>
-                    <p class="small text-white-50">客户亲自控制摄像头缩放</p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-magic"></i></div>
-                    <h5>实时包装</h5>
-                    <p class="small text-white-50">ZoomISO 广播级画面增强</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 5: AI (REACT COMPONENT INTEGRATION HERE) -->
-    <section id="ai" class="section-padding" style="background-color: #0f172a;">
-        <div class="container">
-            <div class="row mb-5 text-center">
-                <div class="col-12">
-                    <h2 class="text-white fw-bold">DeepInsight AI 决策引擎</h2>
-                    <p class="text-white-50">实时演示：视觉、语音与行为数据的实时量化</p>
-                </div>
-            </div>
-            
-            <!-- React App Mount Point -->
-            <div id="react-dashboard-root"></div>
-            
-            <div class="row mt-5 text-white">
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-eye fa-2x text-info mb-3"></i>
-                    <h5>视觉专注度追踪</h5>
-                    <p class="small text-white-50">识别客户眼神停留及 FECC 控制热点。</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-microphone-alt fa-2x text-info mb-3"></i>
-                    <h5>语音意图识别</h5>
-                    <p class="small text-white-50">区分技术询问与商务谈判意图。</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-chart-line fa-2x text-info mb-3"></i>
-                    <h5>DeepScore 评分</h5>
-                    <p class="small text-white-50">计算即时成交概率，辅助销售决策。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 7: Pricing -->
-    <section id="pricing" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">方案报价</h2>
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card">
-                        <h4>标准级方案</h4>
-                        <h2 class="my-3 text-primary">$14,000 <small class="fs-6 text-muted">起</small></h2>
-                        <p class="text-muted small">全国产硬件 / 1080p 双流</p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (月费):</p>
-                        <p>$4,300 起 (含专线+MPO)</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card featured shadow">
-                        <div class="badge bg-primary mb-3">推荐</div>
-                        <h4>旗舰级方案</h4>
-                        <h2 class="my-3 text-primary">$21,000 <small class="fs-6 text-muted">起</small></h2>
-                        <p class="text-muted small">Sony FR7 / 4K 多流 / 完整AI</p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (月费):</p>
-                        <p>$5,000 起 (含专线+MPO)</p>
-                        <button class="btn btn-primary w-100 rounded-pill mt-3">咨询此方案</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center small">
-        <div class="container">
-            <p>&copy; 2024 DCDeepTech Solutions. All Rights Reserved.</p>
-            <p class="text-white-50">Shenzhen • Singapore • Manila</p>
-        </div>
-    </footer>
-
-    <!-- REACT LOGIC SCRIPT -->
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // 1. 图标映射组件 (替换 Lucide 为 FontAwesome 以减少依赖)
-        const Icon = ({ name, className }) => {
-            const icons = {
-                Activity: "fas fa-chart-line",
-                Mic: "fas fa-microphone",
-                Eye: "fas fa-eye",
-                Video: "fas fa-video",
-                TrendingUp: "fas fa-arrow-up",
-                AlertCircle: "fas fa-exclamation-circle",
-                CheckCircle: "fas fa-check-circle",
-                Brain: "fas fa-brain",
-                Users: "fas fa-users",
-                Clock: "fas fa-clock",
-                Target: "fas fa-bullseye",
-                MessageSquare: "fas fa-comment-alt",
-                DollarSign: "fas fa-dollar-sign"
-            };
-            // 将 Tailwind 的颜色类转换为 FontAwesome 可以继承的样式，或者保留 className
-            return <i className={`${icons[name] || 'fas fa-question'} ${className}`}></i>;
-        };
-
-        // 2. 数据模拟 Hook
-        const useLiveData = () => {
-            const [data, setData] = useState({
-                sentiment: 65,
-                attention: 80,
-                dealScore: 42,
-            });
-
-            useEffect(() => {
-                const interval = setInterval(() => {
-                    setData(prev => {
-                        const change = Math.random() > 0.5 ? 1 : -1;
-                        const newSentiment = Math.min(100, Math.max(0, prev.sentiment + change * Math.random() * 5));
-                        const newAttention = Math.min(100, Math.max(0, prev.attention + change * Math.random() * 5));
-                        const newDealScore = (newSentiment * 0.3 + newAttention * 0.3 + 40); 
-
-                        return { ...prev, sentiment: newSentiment, attention: newAttention, dealScore: newDealScore };
-                    });
-                }, 2000);
-                return () => clearInterval(interval);
-            }, []);
-            return data;
-        };
-
-        // 3. 子组件
-        const ProgressBar = ({ value, color = "bg-cyan-500", label }) => (
-            <div className="mb-4">
-                <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">{label}</span>
-                    <span className="text-white font-mono">{Math.round(value)}%</span>
-                </div>
-                <div className="w-full bg-slate-800 rounded-full h-2">
-                    <div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div>
-                </div>
-            </div>
-        );
-
-        const InsightCard = ({ title, iconName, value, trend, color, iconColorClass }) => (
-            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
-                <div className="flex justify-between items-start mb-2">
-                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}>
-                        <Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} />
-                    </div>
-                    {trend && (
-                        <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                            {trend > 0 ? '+' : ''}{trend}%
-                        </span>
-                    )}
-                </div>
-                <div className="text-2xl font-bold text-white mb-1">{value}</div>
-                <div className="text-xs text-slate-400">{title}</div>
-            </div>
-        );
-
-        // 4. 主 App 组件
-        const App = () => {
-            const liveStats = useLiveData();
-            
-            const transcripts = [
-                { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
-                { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
-                { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
-                { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
-            ];
-
-            return (
-                <div className="bg-slate-950 text-slate-200 font-sans p-4 md:p-8 rounded-3xl border border-slate-800 shadow-2xl mx-auto max-w-7xl">
-                    {/* Header */}
-                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20">
-                                <Icon name="Brain" className="text-white" />
-                            </div>
-                            <div>
-                                <h1 className="text-xl font-bold text-white tracking-tight m-0">DeepInsight Engine</h1>
-                                <p className="text-xs text-slate-400 flex items-center gap-2 m-0">
-                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    LIVE ANALYSIS • Session ID: #DC-9928-US
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex gap-4">
-                            <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition text-white border-0">Export Report</button>
-                            <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0">Notify MPO Team</button>
-                        </div>
-                    </header>
-
-                    <div className="grid grid-cols-12 gap-6 text-start">
-                        
-                        {/* Left Column: Video Feed & Transcript */}
-                        <div className="col-span-12 lg:col-span-8 space-y-6">
-                            {/* Video Feed Simulation */}
-                            <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
-                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
-                                    <div className="text-center opacity-30">
-                                        <Icon name="Users" className="text-6xl text-slate-400 mb-4" />
-                                        <p>Client Video Feed (Encrypted)</p>
-                                    </div>
-                                </div>
-                                {/* Overlays */}
-                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2">
-                                    <Icon name="Eye" className="text-green-400" />
-                                    <span className="text-xs text-green-400 font-mono">Gaze: Focused on Product</span>
-                                </div>
-                                <div className="absolute bottom-8 left-8 right-8">
-                                    <div className="bg-slate-900/80 backdrop-blur-md p-4 rounded-xl border-l-4 border-cyan-500">
-                                        <p className="text-sm text-slate-300 mb-2"><span className="text-cyan-400 font-bold">Client:</span> "The soldering looks very clean. What's the tolerance?"</p>
-                                        <div className="flex gap-2">
-                                            <span className="text-[10px] px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">Intent: Technical Validation</span>
-                                            <span className="text-[10px] px-2 py-0.5 bg-green-500/20 text-green-300 rounded border border-green-500/30">Sentiment: Positive (0.85)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Face Detect Box */}
-                                <div className="absolute top-1/4 left-1/4 w-1/2 h-1/2 border border-cyan-500/30 rounded-lg pointer-events-none">
-                                    <div className="absolute -top-3 left-0 text-[10px] bg-cyan-500/20 text-cyan-300 px-1">Face Detect</div>
-                                </div>
-                            </div>
-
-                            {/* Transcript */}
-                            <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
-                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center">
-                                    <Icon name="MessageSquare" className="mr-2" /> Live Transcript & Insights
-                                </h3>
-                                <div className="space-y-4">
-                                    {transcripts.map((t, idx) => (
-                                        <div key={idx} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}>
-                                            <div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div>
-                                            <div>
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>
-                                                        {t.speaker}
-                                                    </span>
-                                                    {t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}
-                                                </div>
-                                                <p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Column: Stats */}
-                        <div className="col-span-12 lg:col-span-4 space-y-6">
-                            {/* Deal Score */}
-                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-                                <div className="relative z-10">
-                                    <h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2">
-                                        <Icon name="Target" /> Deal Probability Score
-                                    </h2>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span>
-                                        <span className="text-sm text-slate-400">/ 100</span>
-                                    </div>
-                                    <div className="mt-4 space-y-2">
-                                        <div className="flex items-center gap-2 text-xs text-green-400">
-                                            <Icon name="TrendingUp" />
-                                            <span>+12% vs. Start</span>
-                                        </div>
-                                        <p className="text-xs text-slate-500 mt-2">
-                                            AI Prediction: High probability of moving to sample testing.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Cards Grid */}
-                            <div className="grid grid-cols-2 gap-4">
-                                <InsightCard 
-                                    title="Engagement" 
-                                    value={`${Math.round(liveStats.attention)}%`} 
-                                    iconName="Eye" 
-                                    trend={5}
-                                    color="bg-purple-500"
-                                    iconColorClass="text-purple-500"
-                                />
-                                <InsightCard 
-                                    title="Sentiment" 
-                                    value={`${Math.round(liveStats.sentiment)}`} 
-                                    iconName="Activity" 
-                                    trend={2}
-                                    color="bg-green-500"
-                                    iconColorClass="text-green-500" 
-                                />
-                            </div>
-
-                            {/* Indicators */}
-                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                                <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2">
-                                    <Icon name="Activity" className="text-cyan-500" /> Real-time Indicators
-                                </h3>
-                                <ProgressBar label="Technical Fit" value={85} color="bg-cyan-500" />
-                                <ProgressBar label="Pricing Sensitivity" value={30} color="bg-yellow-500" />
-                                <ProgressBar label="Interaction (FECC)" value={72} color="bg-purple-500" />
-                            </div>
-
-                            {/* Suggestions */}
-                            <div className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-5 rounded-xl border border-indigo-500/30">
-                                <h4 className="text-xs font-bold text-indigo-300 uppercase mb-3 flex items-center gap-2">
-                                    <Icon name="AlertCircle" /> Co-pilot Suggestions
-                                </h4>
-                                <ul className="space-y-3 pl-0 mb-0">
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>Client focused on PCB durability. <strong>Action:</strong> Show stress test.</span>
-                                    </li>
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>Meeting ending soon. <strong>Action:</strong> Propose sending samples.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
-        root.render(<App />);
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-Model
-ThinkingThoughts
-Expand to view model thoughts
-
-chevron_right
-这是一个支持 中英文一键切换 (Bilingual Toggle) 的完整版本。
-主要更新点：
-全局语言切换按钮：导航栏右上角增加了 EN / 中 切换按钮。
-双语内容架构：
-静态 HTML 部分：采用 CSS 类切换机制 (.lang-zh vs .lang-en)，确保页面加载快，且SEO友好。
-React AI 仪表盘：增加了内部状态监听，点击切换按钮时，React 组件会实时重新渲染为对应语言的界面和模拟数据。
-模拟数据本地化：英文模式下，AI 分析的对话流和建议也会切换为纯英文内容。
-您可以直接保存以下代码为 index.html。
-code
-Html
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DCDeepTech | Global Digital Showroom Strategy</title>
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <!-- React & Tailwind -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = { corePlugins: { preflight: false } }
-    </script>
-    
-    <style>
-        :root {
-            --primary-color: #0a2540;
-            --accent-color: #00d4ff;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* Language Toggle Logic */
-        body.lang-mode-en .lang-zh { display: none !important; }
-        body.lang-mode-en .lang-en { display: inline-block !important; }
-        body:not(.lang-mode-en) .lang-en { display: none !important; }
-        body:not(.lang-mode-en) .lang-zh { display: inline-block !important; }
-
-        /* Navigation */
-        .navbar {
-            background-color: rgba(10, 37, 64, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-        }
-        .navbar-brand { font-weight: 700; color: white !important; }
-        .nav-link { color: rgba(255,255,255,0.8) !important; cursor: pointer; }
-        .nav-link:hover { color: var(--accent-color) !important; }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, #0a2540 0%, #001529 100%);
-            color: white;
-            padding: 160px 0 100px;
-            position: relative;
-        }
-        .hero-title { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; }
-        .btn-cta {
-            background-color: var(--accent-color);
-            color: #000; font-weight: 700; padding: 12px 30px; border-radius: 50px; border: none; transition: transform 0.2s;
-        }
-        .btn-cta:hover { transform: translateY(-3px); background-color: #fff; color: var(--primary-color); }
-
-        /* Cards */
-        .triangle-card {
-            border: none; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            height: 100%; transition: transform 0.3s; background: white;
-        }
-        .triangle-card:hover { transform: translateY(-10px); }
-        .card-header-custom { padding: 20px; text-align: center; color: white; }
-        
-        /* Pricing */
-        .pricing-card { border: 1px solid #eee; border-radius: 15px; padding: 40px; text-align: center; transition: 0.3s; background: white; }
-        .pricing-card.featured { border: 2px solid var(--primary-color); background-color: #fcfcfc; transform: scale(1.05); z-index: 1; }
-        
-        .section-padding { padding: 80px 0; }
-        footer { background-color: var(--primary-color); color: white; padding: 50px 0; }
-
-        /* React Container */
-        #react-dashboard-root {
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-cube me-2"></i>DCDeepTech</a>
-            
-            <div class="d-flex order-lg-last align-items-center ms-3">
-                <button onclick="toggleLanguage()" class="btn btn-outline-light btn-sm rounded-pill px-3" id="langBtn">
-                    <i class="fas fa-globe me-2"></i><span id="langBtnText">English</span>
-                </button>
-            </div>
-
-            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#golden-triangle">
-                        <span class="lang-zh">核心架构</span><span class="lang-en">Architecture</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">
-                        <span class="lang-zh">沉浸体验</span><span class="lang-en">Experience</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#ai">
-                        <span class="lang-zh">AI 引擎</span><span class="lang-en">AI Engine</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">
-                        <span class="lang-zh">方案报价</span><span class="lang-en">Pricing</span>
-                    </a></li>
-                    <li class="nav-item ms-3">
-                        <a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">
-                            <span class="lang-zh">联系我们</span><span class="lang-en">Contact Us</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="hero-section d-flex align-items-center">
-        <div class="container text-center z-1 position-relative">
-            <h1 class="hero-title">
-                <span class="lang-zh">永不打烊的全球旗舰店</span>
-                <span class="lang-en">The Global Flagship Store That Never Sleeps</span>
-                <br>
-                <span style="color: var(--accent-color);">
-                    <span class="lang-zh">24/7 沉浸式数字展厅</span>
-                    <span class="lang-en">24/7 Immersive Digital Showroom</span>
-                </span>
-            </h1>
-            <p class="lead text-white-50 mb-5 mx-auto" style="max-width: 800px;">
-                <span class="lang-zh">
-                    解决跨境网络黑洞、高昂夜班人力与展示细节缺失三大痛点。<br>
-                    深圳硬件 + 新加坡通道 + 菲律宾服务 = 全球销售引擎。
-                </span>
-                <span class="lang-en">
-                    Solving the "Black Hole" of cross-border latency, high night-shift costs, and lack of detail.<br>
-                    Shenzhen Hardware + Singapore Gateway + Philippines Ops = Global Sales Engine.
-                </span>
-            </p>
-            <a href="#contact" class="btn btn-cta btn-lg shadow-lg">
-                <i class="fas fa-bolt me-2"></i> 
-                <span class="lang-zh">免费获取 <150ms RTT 网络测试报告</span>
-                <span class="lang-en">Get Free <150ms RTT Network Report</span>
-            </a>
-        </div>
-    </header>
-
-    <!-- Module 2: Golden Triangle -->
-    <section id="golden-triangle" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="lang-zh">核心架构：地缘套利“黄金三角”</span>
-                <span class="lang-en">The "Golden Triangle" Architecture</span>
-            </h2>
-            <p class="section-subtitle">
-                <span class="lang-zh">整合三地优势，消除物理距离摩擦。</span>
-                <span class="lang-en">Leveraging geo-arbitrage to eliminate physical friction.</span>
-            </p>
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <div class="triangle-card">
-                        <div class="card-header-custom bg-primary">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-industry"></i></div>
-                            <h4>
-                                <span class="lang-zh">深圳 · 物理核心</span>
-                                <span class="lang-en">Shenzhen · Core</span>
-                            </h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">
-                                <span class="lang-zh">产品库与研发总部。提供工业光学 PTZ 展厅，展示精密硬件细节。</span>
-                                <span class="lang-en">Physical Product HQ. Equipped with Industrial PTZ optics to demonstrate precision hardware details.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="triangle-card">
-                        <div class="card-header-custom" style="background-color: #00509d;">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-network-wired"></i></div>
-                            <h4>
-                                <span class="lang-zh">新加坡 · 数字枢纽</span>
-                                <span class="lang-en">Singapore · Hub</span>
-                            </h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">
-                                <span class="lang-zh">合规数据路由与低延迟中转。利用 IEPL 专线弥合网络差距。</span>
-                                <span class="lang-en">Compliance & Routing. Bridging the firewall gap with low-latency IEPL circuits.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="triangle-card">
-                        <div class="card-header-custom" style="background-color: #0077b6;">
-                            <div class="fs-1 mb-2 text-info"><i class="fas fa-headset"></i></div>
-                            <h4>
-                                <span class="lang-zh">菲律宾 · 运营引擎</span>
-                                <span class="lang-en">Philippines · Ops</span>
-                            </h4>
-                        </div>
-                        <div class="p-4">
-                            <p class="card-text small">
-                                <span class="lang-zh">24/7 市场流程外包 (MPO)。英语原生团队实现“跟随太阳”服务。</span>
-                                <span class="lang-en">24/7 MPO Center. Native English talent enabling "Follow-the-Sun" zero-downtime service.</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 4: Experience -->
-    <section id="experience" class="section-padding bg-dark text-white">
-        <div class="container">
-            <h2 class="section-title text-white">
-                <span class="lang-zh">数字孪生体验</span>
-                <span class="lang-en">Digital Twin Experience</span>
-            </h2>
-            <p class="section-subtitle text-white-50">
-                <span class="lang-zh">超越 Zoom 的上帝视角。</span>
-                <span class="lang-en">Beyond standard video conferencing.</span>
-            </p>
-            <div class="row text-center mt-5">
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-video"></i></div>
-                    <h5><span class="lang-zh">多流架构</span><span class="lang-en">Multi-Stream</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">全景 + 微距 + 人像三流同推</span>
-                        <span class="lang-en">Context + Detail + Human feeds</span>
-                    </p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-hand-pointer"></i></div>
-                    <h5><span class="lang-zh">自主视角</span><span class="lang-en">User Choice</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">客户自由 Pin 选画面</span>
-                        <span class="lang-en">Clients pin views freely</span>
-                    </p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-gamepad"></i></div>
-                    <h5><span class="lang-zh">远程云台</span><span class="lang-en">Remote Control</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">客户亲自控制摄像头缩放</span>
-                        <span class="lang-en">Far End Camera Control (FECC)</span>
-                    </p>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="fs-1 text-info mb-3"><i class="fas fa-magic"></i></div>
-                    <h5><span class="lang-zh">实时包装</span><span class="lang-en">Broadcast FX</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">ZoomISO 广播级画面增强</span>
-                        <span class="lang-en">ZoomISO Real-time Overlay</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Module 5: AI (REACT COMPONENT INTEGRATION) -->
-    <section id="ai" class="section-padding" style="background-color: #0f172a;">
-        <div class="container">
-            <div class="row mb-5 text-center">
-                <div class="col-12">
-                    <h2 class="text-white fw-bold">
-                        <span class="lang-zh">DeepInsight AI 决策引擎</span>
-                        <span class="lang-en">DeepInsight AI Engine</span>
-                    </h2>
-                    <p class="text-white-50">
-                        <span class="lang-zh">实时演示：视觉、语音与行为数据的实时量化</span>
-                        <span class="lang-en">Live Demo: Quantifying Vision, Voice, and Behavior in real-time.</span>
-                    </p>
-                </div>
-            </div>
-            
-            <!-- React App Mount Point -->
-            <div id="react-dashboard-root"></div>
-            
-        </div>
-    </section>
-
-    <!-- Module 7: Pricing -->
-    <section id="pricing" class="section-padding bg-light">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="lang-zh">方案报价</span>
-                <span class="lang-en">Pricing Plans</span>
-            </h2>
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card">
-                        <h4>
-                            <span class="lang-zh">标准级方案</span>
-                            <span class="lang-en">Standard Plan</span>
-                        </h4>
-                        <h2 class="my-3 text-primary">$14,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
-                        <p class="text-muted small">
-                            <span class="lang-zh">全国产硬件 / 1080p 双流</span>
-                            <span class="lang-en">Domestic Hardware / 1080p Dual Stream</span>
-                        </p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (<span class="lang-zh">月费</span><span class="lang-en">Monthly</span>):</p>
-                        <p>
-                            <span class="lang-zh">$4,300 起 (含专线+MPO)</span>
-                            <span class="lang-en">From $4,300 (Circuit + MPO)</span>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="pricing-card featured shadow">
-                        <div class="badge bg-primary mb-3">
-                            <span class="lang-zh">推荐</span><span class="lang-en">Best Value</span>
-                        </div>
-                        <h4>
-                            <span class="lang-zh">旗舰级方案</span>
-                            <span class="lang-en">Flagship Plan</span>
-                        </h4>
-                        <h2 class="my-3 text-primary">$21,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
-                        <p class="text-muted small">
-                            <span class="lang-zh">Sony FR7 / 4K 多流 / 完整AI</span>
-                            <span class="lang-en">Sony FR7 / 4K Multi-Stream / Full AI</span>
-                        </p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (<span class="lang-zh">月费</span><span class="lang-en">Monthly</span>):</p>
-                        <p>
-                            <span class="lang-zh">$5,000 起 (含专线+MPO)</span>
-                            <span class="lang-en">From $5,000 (Circuit + MPO)</span>
-                        </p>
-                        <button class="btn btn-primary w-100 rounded-pill mt-3">
-                            <span class="lang-zh">咨询此方案</span>
-                            <span class="lang-en">Inquire Now</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="text-center small">
-        <div class="container">
-            <p>&copy; 2024 DCDeepTech Solutions. All Rights Reserved.</p>
-            <p class="text-white-50">Shenzhen • Singapore • Manila</p>
-        </div>
-    </footer>
-
-    <!-- Language Switching Logic -->
-    <script>
-        function toggleLanguage() {
-            const body = document.body;
-            const btnText = document.getElementById('langBtnText');
-            
-            // Toggle Class on Body
-            body.classList.toggle('lang-mode-en');
-            
-            // Update Button Text
-            const isEn = body.classList.contains('lang-mode-en');
-            btnText.textContent = isEn ? '中文' : 'English';
-
-            // Dispatch Event for React Component
-            const event = new CustomEvent('langChange', { detail: { lang: isEn ? 'en' : 'zh' } });
-            window.dispatchEvent(event);
-        }
-    </script>
-
-    <!-- REACT LOGIC SCRIPT -->
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        // --- Dictionary for React Component ---
-        const contentDict = {
-            zh: {
-                headerTitle: "DeepInsight 引擎",
-                liveStatus: "实时分析中",
-                exportBtn: "导出报告",
-                notifyBtn: "通知 MPO 团队",
-                feedTitle: "客户视频流 (已加密)",
-                gaze: "视线追踪: 聚焦产品",
-                intent: "意图识别: 技术验证",
-                transcriptTitle: "实时转录 & 洞察",
-                dealTitle: "成交概率评分",
-                aiPred: "AI 预测: 基于'容差'和'芯片细节'的询问，进入样品测试阶段的概率极高。",
-                engagement: "专注度",
-                sentiment: "情感倾向",
-                techFit: "技术匹配度",
-                priceSens: "价格敏感度",
-                interaction: "交互强度 (FECC)",
-                copilot: "副驾驶建议",
-                suggestion1: "客户关注 PCB 耐久度。建议：展示压力测试报告。",
-                suggestion2: "会议即将结束。建议：主动提议寄送样品。",
-                speakers: { client: "客户 (US)", sales: "销售 (SZ)", ai: "AI 助手" }
-            },
-            en: {
-                headerTitle: "DeepInsight Engine",
-                liveStatus: "LIVE ANALYSIS",
-                exportBtn: "Export Report",
-                notifyBtn: "Notify MPO Team",
-                feedTitle: "Client Video Feed (Encrypted)",
-                gaze: "Gaze: Focused on Product",
-                intent: "Intent: Technical Validation",
-                transcriptTitle: "Live Transcript & Insights",
-                dealTitle: "Deal Probability Score",
-                aiPred: "AI Prediction: High probability of moving to sample testing phase based on technical inquiries.",
-                engagement: "Engagement",
-                sentiment: "Sentiment",
-                techFit: "Technical Fit",
-                priceSens: "Pricing Sensitivity",
-                interaction: "Interaction (FECC)",
-                copilot: "Co-pilot Suggestions",
-                suggestion1: "Client focused on PCB durability. Action: Show stress test report.",
-                suggestion2: "Meeting ending soon. Action: Propose sending samples.",
-                speakers: { client: "Client (US)", sales: "Sales (SZ)", ai: "AI Assistant" }
-            }
-        };
-
-        // --- Mock Transcript Generator ---
-        const getTranscripts = (lang) => {
-            if (lang === 'zh') {
-                return [
-                    { time: "10:02:15", speaker: "客户 (US)", text: "能再让我看下芯片的细节吗？", tag: "兴趣", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "销售 (SZ)", text: "没问题，我现在用微距镜头放大。", tag: "演示", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "客户 (US)", text: "哇，焊点很干净。公差是多少？", tag: "技术", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI 助手", text: ">> 检测到关于“公差”的技术询问。建议提供 V2 规格书。", tag: "洞察", sentiment: "system" },
-                ];
-            } else {
-                return [
-                    { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
-                ];
-            }
-        };
-
-        const Icon = ({ name, className }) => {
-            const icons = {
-                Activity: "fas fa-chart-line", Eye: "fas fa-eye",
-                Video: "fas fa-video", TrendingUp: "fas fa-arrow-up",
-                AlertCircle: "fas fa-exclamation-circle", Brain: "fas fa-brain",
-                Users: "fas fa-users", Target: "fas fa-bullseye",
-                MessageSquare: "fas fa-comment-alt"
-            };
-            return <i className={`${icons[name] || 'fas fa-question'} ${className}`}></i>;
-        };
-
-        const useLiveData = () => {
-            const [data, setData] = useState({ sentiment: 65, attention: 80, dealScore: 42 });
-            useEffect(() => {
-                const interval = setInterval(() => {
-                    setData(prev => {
-                        const change = Math.random() > 0.5 ? 1 : -1;
-                        return {
-                            ...prev,
-                            sentiment: Math.min(100, Math.max(0, prev.sentiment + change * Math.random() * 5)),
-                            attention: Math.min(100, Math.max(0, prev.attention + change * Math.random() * 5)),
-                            dealScore: (prev.sentiment * 0.3 + prev.attention * 0.3 + 40)
-                        };
-                    });
-                }, 2000);
-                return () => clearInterval(interval);
-            }, []);
-            return data;
-        };
-
-        const ProgressBar = ({ value, color, label }) => (
-            <div className="mb-4">
-                <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">{label}</span>
-                    <span className="text-white font-mono">{Math.round(value)}%</span>
-                </div>
-                <div className="w-full bg-slate-800 rounded-full h-2">
-                    <div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div>
-                </div>
-            </div>
-        );
-
-        const InsightCard = ({ title, iconName, value, trend, color, iconColorClass }) => (
-            <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
-                <div className="flex justify-between items-start mb-2">
-                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}>
-                        <Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} />
-                    </div>
-                    {trend && (
-                        <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                            {trend > 0 ? '+' : ''}{trend}%
-                        </span>
-                    )}
-                </div>
-                <div className="text-2xl font-bold text-white mb-1">{value}</div>
-                <div className="text-xs text-slate-400">{title}</div>
-            </div>
-        );
-
-        const App = () => {
-            const [lang, setLang] = useState('zh'); // Default to Chinese
-            const liveStats = useLiveData();
-            const content = contentDict[lang];
-            const transcripts = getTranscripts(lang);
-
-            // Listen for language toggle event from outside
-            useEffect(() => {
-                const handleLangChange = (e) => setLang(e.detail.lang);
-                window.addEventListener('langChange', handleLangChange);
-                return () => window.removeEventListener('langChange', handleLangChange);
-            }, []);
-
-            return (
-                <div className="bg-slate-950 text-slate-200 font-sans p-4 md:p-8 rounded-3xl border border-slate-800 shadow-2xl mx-auto max-w-7xl text-start">
-                    {/* Header */}
-                    <header className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20">
-                                <Icon name="Brain" className="text-white" />
-                            </div>
-                            <div>
-                                <h1 className="text-xl font-bold text-white tracking-tight m-0">{content.headerTitle}</h1>
-                                <p className="text-xs text-slate-400 flex items-center gap-2 m-0">
-                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    {content.liveStatus} • ID: #DC-9928-US
-                                </p>
-                            </div>
-                        </div>
-                        <div className="flex gap-4">
-                            <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition text-white border-0">{content.exportBtn}</button>
-                            <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0">{content.notifyBtn}</button>
-                        </div>
-                    </header>
-
-                    <div className="grid grid-cols-12 gap-6">
-                        {/* Left Column */}
-                        <div className="col-span-12 lg:col-span-8 space-y-6">
-                            {/* Video Feed */}
-                            <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
-                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
-                                    <div className="text-center opacity-30">
-                                        <Icon name="Users" className="text-6xl text-slate-400 mb-4" />
-                                        <p>{content.feedTitle}</p>
-                                    </div>
-                                </div>
-                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2">
-                                    <Icon name="Eye" className="text-green-400" />
-                                    <span className="text-xs text-green-400 font-mono">{content.gaze}</span>
-                                </div>
-                                <div className="absolute bottom-8 left-8 right-8">
-                                    <div className="bg-slate-900/80 backdrop-blur-md p-4 rounded-xl border-l-4 border-cyan-500">
-                                        <p className="text-sm text-slate-300 mb-2">
-                                            <span className="text-cyan-400 font-bold">{transcripts[2].speaker}:</span> "{transcripts[2].text}"
-                                        </p>
-                                        <div className="flex gap-2">
-                                            <span className="text-[10px] px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">{content.intent}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Transcript */}
-                            <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
-                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center">
-                                    <Icon name="MessageSquare" className="mr-2" /> {content.transcriptTitle}
-                                </h3>
-                                <div className="space-y-4">
-                                    {transcripts.map((t, idx) => (
-                                        <div key={idx} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}>
-                                            <div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div>
-                                            <div>
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>
-                                                        {t.speaker}
-                                                    </span>
-                                                    {t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}
-                                                </div>
-                                                <p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Right Column */}
-                        <div className="col-span-12 lg:col-span-4 space-y-6">
-                            {/* Deal Score */}
-                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-                                <div className="relative z-10">
-                                    <h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2">
-                                        <Icon name="Target" /> {content.dealTitle}
-                                    </h2>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span>
-                                        <span className="text-sm text-slate-400">/ 100</span>
-                                    </div>
-                                    <p className="text-xs text-slate-500 mt-3">{content.aiPred}</p>
-                                </div>
-                            </div>
-
-                            {/* Stats Grid */}
-                            <div className="grid grid-cols-2 gap-4">
-                                <InsightCard title={content.engagement} value={`${Math.round(liveStats.attention)}%`} iconName="Eye" trend={5} color="bg-purple-500" iconColorClass="text-purple-500" />
-                                <InsightCard title={content.sentiment} value={`${Math.round(liveStats.sentiment)}`} iconName="Activity" trend={2} color="bg-green-500" iconColorClass="text-green-500" />
-                            </div>
-
-                            {/* Indicators */}
-                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                                <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2">
-                                    <Icon name="Activity" className="text-cyan-500" /> Real-time Indicators
-                                </h3>
-                                <ProgressBar label={content.techFit} value={85} color="bg-cyan-500" />
-                                <ProgressBar label={content.priceSens} value={30} color="bg-yellow-500" />
-                                <ProgressBar label={content.interaction} value={72} color="bg-purple-500" />
-                            </div>
-
-                            {/* Suggestions */}
-                            <div className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-5 rounded-xl border border-indigo-500/30">
-                                <h4 className="text-xs font-bold text-indigo-300 uppercase mb-3 flex items-center gap-2">
-                                    <Icon name="AlertCircle" /> {content.copilot}
-                                </h4>
-                                <ul className="space-y-3 pl-0 mb-0">
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>{content.suggestion1}</span>
-                                    </li>
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>{content.suggestion2}</span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
-        root.render(<App />);
-    </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-Model
-ThinkingThoughts
-Expand to view model thoughts
-
-chevron_right
-Model
-ThinkingThoughts
-Expand to view model thoughts
-
-chevron_right
-这是一个为您更新后的完整代码。我将您提供的 《菲律宾 MPO 全球战略报告》 中的核心内容（三班制架构、语言优势、核心工作流、无缝交接 SOP）提炼并可视化为一个全新的 “全球运营 (Global Ops)” 板块。
-更新内容概览：
-新增导航项：在导航栏添加了 全球运营 / Global Ops 链接。
-新增 MPO 战略板块：位于“核心架构”之后。
-可视化排班表：清晰展示 A班 (APAC)、B班 (EMEA)、C班 (AMER) 的时间覆盖与职责。
-战略优势卡片：展示“中性口音”、“文化兼容”和“夜班生态”。
-核心工作流折叠面板：详细介绍直播场控、销售线索秒级响应 (Speed to Lead) 和无缝交接协议。
-请直接保存以下代码为 index.html。
-code
-Html
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -2127,8 +88,8 @@ Html
         .section-padding { padding: 80px 0; }
         footer { background-color: var(--primary-color); color: white; padding: 50px 0; }
 
-        /* React Container */
-        #react-dashboard-root {
+        /* React Containers */
+        #react-dashboard-root, #react-map-root {
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
     </style>
@@ -2155,21 +116,21 @@ Html
                     <li class="nav-item"><a class="nav-link" href="#golden-triangle">
                         <span class="lang-zh">核心架构</span><span class="lang-en">Architecture</span>
                     </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#global-flow">
+                        <span class="lang-zh">三地联动</span><span class="lang-en">Global Flows</span>
+                    </a></li>
                     <li class="nav-item"><a class="nav-link" href="#mpo-ops">
-                        <span class="lang-zh">全球运营</span><span class="lang-en">Global Ops</span>
+                        <span class="lang-zh">运营</span><span class="lang-en">Ops</span>
                     </a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">
-                        <span class="lang-zh">沉浸体验</span><span class="lang-en">Experience</span>
+                        <span class="lang-zh">体验</span><span class="lang-en">Experience</span>
                     </a></li>
                     <li class="nav-item"><a class="nav-link" href="#ai">
-                        <span class="lang-zh">AI 引擎</span><span class="lang-en">AI Engine</span>
-                    </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#pricing">
-                        <span class="lang-zh">方案报价</span><span class="lang-en">Pricing</span>
+                        <span class="lang-zh">AI 引擎</span><span class="lang-en">AI</span>
                     </a></li>
                     <li class="nav-item ms-3">
                         <a class="btn btn-sm btn-outline-light rounded-pill px-3" href="#contact">
-                            <span class="lang-zh">联系我们</span><span class="lang-en">Contact Us</span>
+                            <span class="lang-zh">联系</span><span class="lang-en">Contact</span>
                         </a>
                     </li>
                 </ul>
@@ -2274,7 +235,46 @@ Html
         </div>
     </section>
 
-    <!-- NEW MODULE: MPO Operations Detail -->
+    <!-- NEW MODULE: Global Flows Animation -->
+    <section id="global-flow" class="py-5" style="background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);">
+        <div class="container">
+            <div class="row mb-4 text-center text-white">
+                <div class="col-12">
+                    <h2 class="fw-bold">
+                        <span class="lang-zh">全球全链路动态闭环</span>
+                        <span class="lang-en">Global Closed-Loop Dynamics</span>
+                    </h2>
+                    <p class="text-white-50">
+                        <span class="lang-zh">信息流、物流、资金流的协同运作</span>
+                        <span class="lang-en">Synergy of Information, Logistics, and Financial Flows</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- React Map Mount Point -->
+            <div id="react-map-root"></div>
+            
+            <div class="row mt-4 text-white-50 text-center small">
+                <div class="col-md-4">
+                    <i class="fas fa-network-wired text-info mb-2"></i><br>
+                    <span class="lang-zh">信息流：深/菲汇聚新加坡，低延迟直达欧美</span>
+                    <span class="lang-en">Info: SZ/PH converge in SG, low-latency to West</span>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-shipping-fast text-warning mb-2"></i><br>
+                    <span class="lang-zh">物流：深圳工厂直发全球 (Dropshipping)</span>
+                    <span class="lang-en">Logistics: Direct shipping from SZ HQ</span>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-coins text-warning mb-2" style="color: #fbbf24 !important;"></i><br>
+                    <span class="lang-zh">资金流：全球收款，合规结算至新加坡</span>
+                    <span class="lang-en">Finance: Global collection, settlement in SG</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE: MPO Operations -->
     <section id="mpo-ops" class="section-padding bg-white">
         <div class="container">
             <div class="row justify-content-center">
@@ -2284,11 +284,10 @@ Html
                         <span class="lang-en">Global 24/7 MPO Implementation</span>
                     </h2>
                     <p class="section-subtitle">
-                        <span class="lang-zh">基于“跟随客户 (Follow the Client)” 模式的无缝时区覆盖</span>
-                        <span class="lang-en">Seamless timezone coverage based on the "Follow the Client" model</span>
+                        <span class="lang-zh">基于“跟随客户”模式的无缝时区覆盖</span>
+                        <span class="lang-en">Seamless timezone coverage based on "Follow the Client"</span>
                     </p>
 
-                    <!-- Shift Schedule Visualization -->
                     <div class="card bg-light border-0 mb-5">
                         <div class="card-body p-4">
                             <h5 class="card-title mb-4 text-center text-primary fw-bold">
@@ -2297,51 +296,36 @@ Html
                                 <span class="lang-en">The 3-Shift "Follow-the-Sun" System (Manila Hub)</span>
                             </h5>
                             <div class="row g-3">
-                                <!-- Shift A -->
                                 <div class="col-md-4">
                                     <div class="shift-card p-3 h-100">
                                         <div class="badge bg-info text-dark mb-2">A Shift</div>
-                                        <h5 class="fw-bold">
-                                            <span class="lang-zh">亚太班 (APAC)</span>
-                                            <span class="lang-en">APAC Shift</span>
-                                        </h5>
+                                        <h5 class="fw-bold"><span class="lang-zh">亚太班 (APAC)</span><span class="lang-en">APAC Shift</span></h5>
                                         <p class="small text-muted mb-2">06:00 – 15:00 (GMT+8)</p>
                                         <ul class="small ps-3 mb-0">
                                             <li><span class="lang-zh">服务澳新市场</span><span class="lang-en">Support AU/NZ Markets</span></li>
                                             <li><span class="lang-zh">处理美国日终数据</span><span class="lang-en">Process US EOD Data</span></li>
-                                            <li><span class="lang-zh">欧洲市场预热</span><span class="lang-en">Prep for EMEA Open</span></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- Shift B -->
                                 <div class="col-md-4">
                                     <div class="shift-card p-3 h-100" style="border-left-color: #00509d;">
                                         <div class="badge bg-primary mb-2">B Shift</div>
-                                        <h5 class="fw-bold">
-                                            <span class="lang-zh">欧非班 (EMEA)</span>
-                                            <span class="lang-en">EMEA Shift</span>
-                                        </h5>
+                                        <h5 class="fw-bold"><span class="lang-zh">欧非班 (EMEA)</span><span class="lang-en">EMEA Shift</span></h5>
                                         <p class="small text-muted mb-2">14:00 – 23:00 (GMT+8)</p>
                                         <ul class="small ps-3 mb-0">
-                                            <li><span class="lang-zh">覆盖伦敦/柏林黄金时间</span><span class="lang-en">London/Berlin Prime Time</span></li>
-                                            <li><span class="lang-zh">承接亚太交接</span><span class="lang-en">APAC Handover Intake</span></li>
-                                            <li><span class="lang-zh">社交媒体即时互动</span><span class="lang-en">Social Media Engagement</span></li>
+                                            <li><span class="lang-zh">伦敦/柏林黄金时间</span><span class="lang-en">London/Berlin Prime Time</span></li>
+                                            <li><span class="lang-zh">承接亚太交接</span><span class="lang-en">APAC Handover</span></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- Shift C -->
                                 <div class="col-md-4">
                                     <div class="shift-card p-3 h-100" style="border-left-color: #0a2540;">
                                         <div class="badge bg-dark mb-2">C Shift</div>
-                                        <h5 class="fw-bold">
-                                            <span class="lang-zh">美洲班 (AMER)</span>
-                                            <span class="lang-en">AMER Shift</span>
-                                        </h5>
+                                        <h5 class="fw-bold"><span class="lang-zh">美洲班 (AMER)</span><span class="lang-en">AMER Shift</span></h5>
                                         <p class="small text-muted mb-2">22:00 – 07:00 (GMT+8)</p>
                                         <ul class="small ps-3 mb-0">
-                                            <li><span class="lang-zh">覆盖纽约/加州核心商业时间</span><span class="lang-en">NY/CA Core Business Hours</span></li>
-                                            <li><span class="lang-zh">直播电商主力班次</span><span class="lang-en">Live Stream Main Event</span></li>
-                                            <li><span class="lang-zh">与美国总部实时协同</span><span class="lang-en">Real-time US Collaboration</span></li>
+                                            <li><span class="lang-zh">纽约/加州核心时间</span><span class="lang-en">NY/CA Core Hours</span></li>
+                                            <li><span class="lang-zh">直播电商主力</span><span class="lang-en">Live Stream Main Event</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -2349,97 +333,23 @@ Html
                         </div>
                     </div>
 
-                    <div class="row mt-4">
-                        <!-- Strategic Advantage -->
-                        <div class="col-lg-5 mb-4">
-                            <h4 class="mb-3">
-                                <span class="lang-zh">为何选择菲律宾？</span>
-                                <span class="lang-en">Why Philippines Hub?</span>
-                            </h4>
-                            <div class="list-group">
-                                <div class="list-group-item border-0 ps-0">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 text-success"><i class="fas fa-comments fa-lg"></i></div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <h6 class="mb-1 fw-bold"><span class="lang-zh">中性口音与文化套利</span><span class="lang-en">Neutral Accent & Cultural Affinity</span></h6>
-                                            <p class="small text-muted mb-0">
-                                                <span class="lang-zh">将认知摩擦降至最低。相比其他外包地，菲律宾人才更易被英美客户理解，且深刻理解西方商业规范。</span>
-                                                <span class="lang-en">Minimizing cognitive friction. Superior accent neutrality compared to other BPO hubs, with deep understanding of Western business norms.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item border-0 ps-0">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 text-success"><i class="fas fa-city fa-lg"></i></div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <h6 class="mb-1 fw-bold"><span class="lang-zh">成熟的夜班生态</span><span class="lang-en">Mature Night Shift Ecosystem</span></h6>
-                                            <p class="small text-muted mb-0">
-                                                <span class="lang-zh">马尼拉拥有完善的 24 小时交通与安保设施，确保夜班（对应美国白班）团队精力充沛，而非疲劳作战。</span>
-                                                <span class="lang-en">Manila's 24/7 infrastructure ensures the night shift (US Day) team is energetic and supported, not struggling with fatigue.</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Strategic Advantage & Workflows Accordion (Simplified for space) -->
+                    <div class="row">
+                        <div class="col-lg-6">
+                             <h4 class="mb-3"><span class="lang-zh">为何选择菲律宾？</span><span class="lang-en">Why Philippines?</span></h4>
+                             <ul class="list-unstyled">
+                                 <li class="mb-3 d-flex"><i class="fas fa-check-circle text-success mt-1 me-3"></i><div><strong><span class="lang-zh">中性口音</span><span class="lang-en">Neutral Accent</span></strong><br><span class="small text-muted"><span class="lang-zh">认知摩擦最小化</span><span class="lang-en">Minimized cognitive friction</span></span></div></li>
+                                 <li class="mb-3 d-flex"><i class="fas fa-check-circle text-success mt-1 me-3"></i><div><strong><span class="lang-zh">夜班生态成熟</span><span class="lang-en">Mature Night Ecosystem</span></strong><br><span class="small text-muted"><span class="lang-zh">24h 交通安保，精力充沛</span><span class="lang-en">Energetic teams, safe infrastructure</span></span></div></li>
+                             </ul>
                         </div>
-
-                        <!-- Core Workflows -->
-                        <div class="col-lg-7">
-                            <h4 class="mb-3">
-                                <span class="lang-zh">核心 MPO 工作流 & SOP</span>
-                                <span class="lang-en">Core MPO Workflows & SOPs</span>
-                            </h4>
-                            <div class="accordion" id="mpoAccordion">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMpo1">
-                                            <i class="fas fa-video me-2 text-primary"></i> 
-                                            <span class="lang-zh">直播场控：隐形销售助理</span>
-                                            <span class="lang-en">Live Stream: Invisible Sales Assistant</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapseMpo1" class="accordion-collapse collapse show" data-bs-parent="#mpoAccordion">
-                                        <div class="accordion-body small">
-                                            <span class="lang-zh">不仅仅是清理垃圾信息。MPO 专员配合主播节奏“置顶”商品链接，实时回答尺码/运费等技术问题，并由“实时剪辑师”捕捉病毒式传播瞬间。</span>
-                                            <span class="lang-en">More than moderation. MPO agents pin product links in sync with hosts, answer tech specs in real-time, while "Clip Editors" capture viral moments for social media.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMpo2">
-                                            <i class="fas fa-bolt me-2 text-primary"></i> 
-                                            <span class="lang-zh">线索审查：速度致胜 (Speed to Lead)</span>
-                                            <span class="lang-en">Lead Qualification: Speed to Lead</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapseMpo2" class="accordion-collapse collapse" data-bs-parent="#mpoAccordion">
-                                        <div class="accordion-body small">
-                                            <span class="lang-zh">利用 BANT 框架即时评分。伦敦客户在 9AM 提交咨询，B 班即时验证。世界 500 强线索触发“红色警报”直通 VP。</span>
-                                            <span class="lang-en">Immediate BANT scoring. A London inquiry at 9 AM triggers instant verification by Shift B. Fortune 500 leads trigger a "Red Alert" to the VP.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMpo3">
-                                            <i class="fas fa-sync-alt me-2 text-primary"></i> 
-                                            <span class="lang-zh">无缝交接协议</span>
-                                            <span class="lang-en">Seamless Handover Protocol</span>
-                                        </button>
-                                    </h2>
-                                    <div id="collapseMpo3" class="accordion-collapse collapse" data-bs-parent="#mpoAccordion">
-                                        <div class="accordion-body small">
-                                            <span class="lang-zh">强制性 60 分钟重叠期。使用 RAG (红/黄/绿) 状态报告传递系统稳定性、VIP 客户情绪及未决事项，防止“旁观者效应”。</span>
-                                            <span class="lang-en">Mandatory 60-min overlap. Uses RAG (Red/Amber/Green) reporting to transfer system status, VIP sentiment, and pending tickets to prevent the "Bystander Effect".</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-6">
+                            <h4 class="mb-3"><span class="lang-zh">SOP 亮点</span><span class="lang-en">SOP Highlights</span></h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-3 d-flex"><i class="fas fa-bolt text-warning mt-1 me-3"></i><div><strong>Speed to Lead</strong><br><span class="small text-muted"><span class="lang-zh">BANT 即时评分与路由</span><span class="lang-en">Instant BANT scoring & routing</span></span></div></li>
+                                <li class="mb-3 d-flex"><i class="fas fa-sync text-info mt-1 me-3"></i><div><strong><span class="lang-zh">无缝交接</span><span class="lang-en">Seamless Handover</span></strong><br><span class="small text-muted"><span class="lang-zh">60分钟重叠期 + RAG 报告</span><span class="lang-en">60min overlap + RAG reporting</span></span></div></li>
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -2452,42 +362,22 @@ Html
                 <span class="lang-zh">数字孪生体验</span>
                 <span class="lang-en">Digital Twin Experience</span>
             </h2>
-            <p class="section-subtitle text-white-50">
-                <span class="lang-zh">超越 Zoom 的上帝视角。</span>
-                <span class="lang-en">Beyond standard video conferencing.</span>
-            </p>
             <div class="row text-center mt-5">
                 <div class="col-md-3 mb-4">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-video"></i></div>
                     <h5><span class="lang-zh">多流架构</span><span class="lang-en">Multi-Stream</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">全景 + 微距 + 人像三流同推</span>
-                        <span class="lang-en">Context + Detail + Human feeds</span>
-                    </p>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-hand-pointer"></i></div>
                     <h5><span class="lang-zh">自主视角</span><span class="lang-en">User Choice</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">客户自由 Pin 选画面</span>
-                        <span class="lang-en">Clients pin views freely</span>
-                    </p>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-gamepad"></i></div>
                     <h5><span class="lang-zh">远程云台</span><span class="lang-en">Remote Control</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">客户亲自控制摄像头缩放</span>
-                        <span class="lang-en">Far End Camera Control (FECC)</span>
-                    </p>
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="fs-1 text-info mb-3"><i class="fas fa-magic"></i></div>
                     <h5><span class="lang-zh">实时包装</span><span class="lang-en">Broadcast FX</span></h5>
-                    <p class="small text-white-50">
-                        <span class="lang-zh">ZoomISO 广播级画面增强</span>
-                        <span class="lang-en">ZoomISO Real-time Overlay</span>
-                    </p>
                 </div>
             </div>
         </div>
@@ -2508,10 +398,8 @@ Html
                     </p>
                 </div>
             </div>
-            
             <!-- React App Mount Point -->
             <div id="react-dashboard-root"></div>
-            
         </div>
     </section>
 
@@ -2525,47 +413,23 @@ Html
             <div class="row justify-content-center mt-5">
                 <div class="col-lg-4 mb-4">
                     <div class="pricing-card">
-                        <h4>
-                            <span class="lang-zh">标准级方案</span>
-                            <span class="lang-en">Standard Plan</span>
-                        </h4>
+                        <h4><span class="lang-zh">标准级方案</span><span class="lang-en">Standard Plan</span></h4>
                         <h2 class="my-3 text-primary">$14,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
                         <p class="text-muted small">
                             <span class="lang-zh">全国产硬件 / 1080p 双流</span>
                             <span class="lang-en">Domestic Hardware / 1080p Dual Stream</span>
                         </p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (<span class="lang-zh">月费</span><span class="lang-en">Monthly</span>):</p>
-                        <p>
-                            <span class="lang-zh">$4,300 起 (含专线+MPO)</span>
-                            <span class="lang-en">From $4,300 (Circuit + MPO)</span>
-                        </p>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="pricing-card featured shadow">
-                        <div class="badge bg-primary mb-3">
-                            <span class="lang-zh">推荐</span><span class="lang-en">Best Value</span>
-                        </div>
-                        <h4>
-                            <span class="lang-zh">旗舰级方案</span>
-                            <span class="lang-en">Flagship Plan</span>
-                        </h4>
+                        <div class="badge bg-primary mb-3"><span class="lang-zh">推荐</span><span class="lang-en">Best Value</span></div>
+                        <h4><span class="lang-zh">旗舰级方案</span><span class="lang-en">Flagship Plan</span></h4>
                         <h2 class="my-3 text-primary">$21,000 <small class="fs-6 text-muted"><span class="lang-zh">起</span><span class="lang-en">up</span></small></h2>
                         <p class="text-muted small">
                             <span class="lang-zh">Sony FR7 / 4K 多流 / 完整AI</span>
                             <span class="lang-en">Sony FR7 / 4K Multi-Stream / Full AI</span>
                         </p>
-                        <hr>
-                        <p class="fw-bold mb-1">OpEx (<span class="lang-zh">月费</span><span class="lang-en">Monthly</span>):</p>
-                        <p>
-                            <span class="lang-zh">$5,000 起 (含专线+MPO)</span>
-                            <span class="lang-en">From $5,000 (Circuit + MPO)</span>
-                        </p>
-                        <button class="btn btn-primary w-100 rounded-pill mt-3">
-                            <span class="lang-zh">咨询此方案</span>
-                            <span class="lang-en">Inquire Now</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -2584,100 +448,202 @@ Html
         function toggleLanguage() {
             const body = document.body;
             const btnText = document.getElementById('langBtnText');
-            
-            // Toggle Class on Body
             body.classList.toggle('lang-mode-en');
-            
-            // Update Button Text
             const isEn = body.classList.contains('lang-mode-en');
             btnText.textContent = isEn ? '中文' : 'English';
-
-            // Dispatch Event for React Component
             const event = new CustomEvent('langChange', { detail: { lang: isEn ? 'en' : 'zh' } });
             window.dispatchEvent(event);
         }
     </script>
 
-    <!-- REACT LOGIC SCRIPT -->
+    <!-- REACT COMPONENTS (AI DASHBOARD + GLOBAL MAP) -->
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // --- Dictionary for React Component ---
-        const contentDict = {
-            zh: {
-                headerTitle: "DeepInsight 引擎",
-                liveStatus: "实时分析中",
-                exportBtn: "导出报告",
-                notifyBtn: "通知 MPO 团队",
-                feedTitle: "客户视频流 (已加密)",
-                gaze: "视线追踪: 聚焦产品",
-                intent: "意图识别: 技术验证",
-                transcriptTitle: "实时转录 & 洞察",
-                dealTitle: "成交概率评分",
-                aiPred: "AI 预测: 基于'容差'和'芯片细节'的询问，进入样品测试阶段的概率极高。",
-                engagement: "专注度",
-                sentiment: "情感倾向",
-                techFit: "技术匹配度",
-                priceSens: "价格敏感度",
-                interaction: "交互强度 (FECC)",
-                copilot: "副驾驶建议",
-                suggestion1: "客户关注 PCB 耐久度。建议：展示压力测试报告。",
-                suggestion2: "会议即将结束。建议：主动提议寄送样品。",
-                speakers: { client: "客户 (US)", sales: "销售 (SZ)", ai: "AI 助手" }
-            },
-            en: {
-                headerTitle: "DeepInsight Engine",
-                liveStatus: "LIVE ANALYSIS",
-                exportBtn: "Export Report",
-                notifyBtn: "Notify MPO Team",
-                feedTitle: "Client Video Feed (Encrypted)",
-                gaze: "Gaze: Focused on Product",
-                intent: "Intent: Technical Validation",
-                transcriptTitle: "Live Transcript & Insights",
-                dealTitle: "Deal Probability Score",
-                aiPred: "AI Prediction: High probability of moving to sample testing phase based on technical inquiries.",
-                engagement: "Engagement",
-                sentiment: "Sentiment",
-                techFit: "Technical Fit",
-                priceSens: "Pricing Sensitivity",
-                interaction: "Interaction (FECC)",
-                copilot: "Co-pilot Suggestions",
-                suggestion1: "Client focused on PCB durability. Action: Show stress test report.",
-                suggestion2: "Meeting ending soon. Action: Propose sending samples.",
-                speakers: { client: "Client (US)", sales: "Sales (SZ)", ai: "AI Assistant" }
-            }
-        };
-
-        // --- Mock Transcript Generator ---
-        const getTranscripts = (lang) => {
-            if (lang === 'zh') {
-                return [
-                    { time: "10:02:15", speaker: "客户 (US)", text: "能再让我看下芯片的细节吗？", tag: "兴趣", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "销售 (SZ)", text: "没问题，我现在用微距镜头放大。", tag: "演示", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "客户 (US)", text: "哇，焊点很干净。公差是多少？", tag: "技术", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI 助手", text: ">> 检测到关于“公差”的技术询问。建议提供 V2 规格书。", tag: "洞察", sentiment: "system" },
-                ];
-            } else {
-                return [
-                    { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
-                    { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
-                    { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
-                    { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
-                ];
-            }
-        };
-
+        // --- 1. SHARED UTILS ---
         const Icon = ({ name, className }) => {
             const icons = {
                 Activity: "fas fa-chart-line", Eye: "fas fa-eye",
                 Video: "fas fa-video", TrendingUp: "fas fa-arrow-up",
                 AlertCircle: "fas fa-exclamation-circle", Brain: "fas fa-brain",
                 Users: "fas fa-users", Target: "fas fa-bullseye",
-                MessageSquare: "fas fa-comment-alt"
+                MessageSquare: "fas fa-comment-alt",
+                Server: "fas fa-server", Shipping: "fas fa-shipping-fast",
+                Coins: "fas fa-coins", Globe: "fas fa-globe-americas"
             };
             return <i className={`${icons[name] || 'fas fa-question'} ${className}`}></i>;
         };
 
+        // --- 2. NEW COMPONENT: GLOBAL MAP ---
+        const GlobalMap = () => {
+            const [lang, setLang] = useState('zh');
+            const [activeFlow, setActiveFlow] = useState('all'); // 'all', 'info', 'logistics', 'finance'
+
+            useEffect(() => {
+                const handleLangChange = (e) => setLang(e.detail.lang);
+                window.addEventListener('langChange', handleLangChange);
+                return () => window.removeEventListener('langChange', handleLangChange);
+            }, []);
+
+            const txt = {
+                zh: { 
+                    sz: "深圳 (硬件/研发)", sg: "新加坡 (结算/数据)", ph: "菲律宾 (运营/客服)", 
+                    us: "美洲市场", eu: "欧洲市场",
+                    legendInfo: "信息流 (数据/视频)", legendLog: "物流 (直发)", legendFin: "资金流 (结算)"
+                },
+                en: { 
+                    sz: "Shenzhen (HW/R&D)", sg: "Singapore (Hub/Finance)", ph: "Philippines (Ops)", 
+                    us: "Americas Market", eu: "Europe Market",
+                    legendInfo: "Info Flow (Data)", legendLog: "Logistics (Direct)", legendFin: "Finance (Settlement)"
+                }
+            };
+            const t = txt[lang];
+
+            // Node Positions (Abstract Schematic)
+            const pos = {
+                us: { x: 100, y: 150 },
+                eu: { x: 400, y: 80 },
+                sz: { x: 600, y: 180 },
+                ph: { x: 650, y: 250 },
+                sg: { x: 550, y: 280 }
+            };
+
+            const isActive = (type) => activeFlow === 'all' || activeFlow === type;
+
+            return (
+                <div className="bg-slate-900/50 rounded-3xl border border-slate-700 p-4 md:p-8 shadow-2xl">
+                    {/* Controls / Legend */}
+                    <div className="flex flex-wrap gap-4 justify-center mb-6">
+                        <button onClick={() => setActiveFlow('info')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'info' ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'border-slate-700 text-slate-400 hover:border-cyan-500/50'}`}>
+                            <div className="w-2 h-2 rounded-full bg-cyan-400 inline-block mr-2"></div>{t.legendInfo}
+                        </button>
+                        <button onClick={() => setActiveFlow('logistics')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'logistics' ? 'bg-orange-500/20 border-orange-500 text-orange-400' : 'border-slate-700 text-slate-400 hover:border-orange-500/50'}`}>
+                            <div className="w-2 h-2 rounded-full bg-orange-400 inline-block mr-2"></div>{t.legendLog}
+                        </button>
+                        <button onClick={() => setActiveFlow('finance')} className={`px-4 py-2 rounded-full text-xs font-bold border transition ${activeFlow === 'finance' ? 'bg-yellow-500/20 border-yellow-500 text-yellow-400' : 'border-slate-700 text-slate-400 hover:border-yellow-500/50'}`}>
+                            <div className="w-2 h-2 rounded-full bg-yellow-400 inline-block mr-2"></div>{t.legendFin}
+                        </button>
+                        <button onClick={() => setActiveFlow('all')} className="text-xs text-slate-500 underline hover:text-white">
+                            Reset
+                        </button>
+                    </div>
+
+                    <div className="relative w-full aspect-[2/1] bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
+                        {/* Background Grid */}
+                        <div className="absolute inset-0 opacity-20" 
+                             style={{backgroundImage: 'radial-gradient(#334155 1px, transparent 1px)', backgroundSize: '20px 20px'}}>
+                        </div>
+
+                        <svg viewBox="0 0 800 400" className="w-full h-full absolute inset-0 pointer-events-none">
+                            <defs>
+                                <marker id="arrow-cyan" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#22d3ee"><path d="M0,0 L0,6 L6,3 z" /></marker>
+                                <marker id="arrow-orange" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#fb923c"><path d="M0,0 L0,6 L6,3 z" /></marker>
+                                <marker id="arrow-yellow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" fill="#fbbf24"><path d="M0,0 L0,6 L6,3 z" /></marker>
+                            </defs>
+
+                            {/* --- 1. Information Flow (Blue) --- */}
+                            {/* SZ -> SG */}
+                            {isActive('info') && <>
+                                <path d={`M${pos.sz.x},${pos.sz.y} Q${pos.sz.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth="2" />
+                                <circle r="2" fill="#22d3ee">
+                                    <animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.sz.x},${pos.sz.y} Q${pos.sz.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
+                                </circle>
+                            </>}
+                            {/* PH -> SG */}
+                            {isActive('info') && <>
+                                <path d={`M${pos.ph.x},${pos.ph.y} Q${pos.ph.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#083344" strokeWidth="2" />
+                                <circle r="2" fill="#22d3ee">
+                                    <animateMotion dur="1.5s" repeatCount="indefinite" path={`M${pos.ph.x},${pos.ph.y} Q${pos.ph.x},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
+                                </circle>
+                            </>}
+                            {/* SG -> US (Cable) */}
+                            {isActive('info') && <>
+                                <path d={`M${pos.sg.x},${pos.sg.y} Q${(pos.sg.x+pos.us.x)/2},${pos.sg.y+50} ${pos.us.x},${pos.us.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
+                                <circle r="3" fill="#22d3ee">
+                                    <animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} Q${(pos.sg.x+pos.us.x)/2},${pos.sg.y+50} ${pos.us.x},${pos.us.y}`} />
+                                </circle>
+                            </>}
+                            {/* SG -> EU (Cable) */}
+                            {isActive('info') && <>
+                                <path d={`M${pos.sg.x},${pos.sg.y} Q${pos.sg.x-100},${pos.eu.y} ${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#0e7490" strokeWidth="1" strokeDasharray="5,5" className="opacity-50" />
+                                <circle r="3" fill="#22d3ee">
+                                    <animateMotion dur="3s" repeatCount="indefinite" path={`M${pos.sg.x},${pos.sg.y} Q${pos.sg.x-100},${pos.eu.y} ${pos.eu.x},${pos.eu.y}`} />
+                                </circle>
+                            </>}
+
+                            {/* --- 2. Logistics Flow (Orange) --- */}
+                            {/* SZ -> US (Direct) */}
+                            {isActive('logistics') && <>
+                                <path d={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100} ${pos.us.x},${pos.us.y}`} fill="none" stroke="#7c2d12" strokeWidth="2" />
+                                <rect width="8" height="4" fill="#fb923c">
+                                    <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.us.x)/2},${pos.sz.y-100} ${pos.us.x},${pos.us.y}`} />
+                                </rect>
+                            </>}
+                            {/* SZ -> EU (Direct) */}
+                            {isActive('logistics') && <>
+                                <path d={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20} ${pos.eu.x},${pos.eu.y}`} fill="none" stroke="#7c2d12" strokeWidth="2" />
+                                <rect width="8" height="4" fill="#fb923c">
+                                    <animateMotion dur="5s" repeatCount="indefinite" rotate="auto" path={`M${pos.sz.x},${pos.sz.y} Q${(pos.sz.x+pos.eu.x)/2},${pos.eu.y+20} ${pos.eu.x},${pos.eu.y}`} />
+                                </rect>
+                            </>}
+
+                            {/* --- 3. Financial Flow (Yellow) --- */}
+                            {/* US -> SG (Payment) */}
+                            {isActive('finance') && <>
+                                <path d={`M${pos.us.x},${pos.us.y} Q${(pos.us.x+pos.sg.x)/2},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth="1.5" strokeDasharray="2,2" />
+                                <circle r="2.5" fill="#fbbf24">
+                                    <animateMotion dur="4s" repeatCount="indefinite" path={`M${pos.us.x},${pos.us.y} Q${(pos.us.x+pos.sg.x)/2},${pos.sg.y} ${pos.sg.x},${pos.sg.y}`} />
+                                </circle>
+                            </>}
+                            {/* EU -> SG (Payment) */}
+                            {isActive('finance') && <>
+                                <path d={`M${pos.eu.x},${pos.eu.y} Q${pos.eu.x},${pos.sg.y-50} ${pos.sg.x},${pos.sg.y}`} fill="none" stroke="#713f12" strokeWidth="1.5" strokeDasharray="2,2" />
+                                <circle r="2.5" fill="#fbbf24">
+                                    <animateMotion dur="4s" repeatCount="indefinite" path={`M${pos.eu.x},${pos.eu.y} Q${pos.eu.x},${pos.sg.y-50} ${pos.sg.x},${pos.sg.y}`} />
+                                </circle>
+                            </>}
+                        </svg>
+
+                        {/* Nodes (DOM Elements for better text handling) */}
+                        {/* US */}
+                        <div className="absolute" style={{left: `${pos.us.x/8}%`, top: `${pos.us.y/4}%`, transform: 'translate(-50%, -50%)'}}>
+                            <div className="w-4 h-4 bg-white rounded-full animate-pulse shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
+                            <div className="mt-2 text-center text-[10px] md:text-xs text-white font-bold bg-black/50 px-2 py-1 rounded border border-white/20">{t.us}</div>
+                        </div>
+                        {/* EU */}
+                        <div className="absolute" style={{left: `${pos.eu.x/8}%`, top: `${pos.eu.y/4}%`, transform: 'translate(-50%, -50%)'}}>
+                            <div className="w-4 h-4 bg-white rounded-full animate-pulse shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
+                            <div className="mt-2 text-center text-[10px] md:text-xs text-white font-bold bg-black/50 px-2 py-1 rounded border border-white/20">{t.eu}</div>
+                        </div>
+                        
+                        {/* DeepTech Triangle Nodes */}
+                        {/* SZ */}
+                        <div className="absolute" style={{left: `${pos.sz.x/8}%`, top: `${pos.sz.y/4}%`, transform: 'translate(-50%, -50%)'}}>
+                            <div className="w-5 h-5 bg-orange-500 rounded-full shadow-[0_0_20px_rgba(249,115,22,0.6)] flex items-center justify-center">
+                                <i className="fas fa-industry text-[10px] text-white"></i>
+                            </div>
+                            <div className="mt-2 text-center text-[10px] md:text-xs text-orange-400 font-bold bg-black/80 px-2 py-1 rounded border border-orange-500/50">{t.sz}</div>
+                        </div>
+                        {/* SG */}
+                        <div className="absolute" style={{left: `${pos.sg.x/8}%`, top: `${pos.sg.y/4}%`, transform: 'translate(-50%, -50%)'}}>
+                            <div className="w-6 h-6 bg-cyan-500 rounded-full shadow-[0_0_20px_rgba(6,182,212,0.8)] z-10 flex items-center justify-center">
+                                <i className="fas fa-star text-xs text-white"></i>
+                            </div>
+                            <div className="mt-2 text-center text-[10px] md:text-xs text-cyan-400 font-bold bg-black/80 px-2 py-1 rounded border border-cyan-500/50">{t.sg}</div>
+                        </div>
+                        {/* PH */}
+                        <div className="absolute" style={{left: `${pos.ph.x/8}%`, top: `${pos.ph.y/4}%`, transform: 'translate(-50%, -50%)'}}>
+                            <div className="w-5 h-5 bg-purple-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.6)] flex items-center justify-center">
+                                <i className="fas fa-headset text-[10px] text-white"></i>
+                            </div>
+                            <div className="mt-2 text-center text-[10px] md:text-xs text-purple-400 font-bold bg-black/80 px-2 py-1 rounded border border-purple-500/50">{t.ph}</div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- 3. EXISTING AI DASHBOARD ---
         const useLiveData = () => {
             const [data, setData] = useState({ sentiment: 65, attention: 80, dealScore: 42 });
             useEffect(() => {
@@ -2697,42 +663,62 @@ Html
             return data;
         };
 
+        const contentDict = {
+            zh: {
+                headerTitle: "DeepInsight 引擎", liveStatus: "实时分析中", exportBtn: "导出报告", notifyBtn: "通知 MPO 团队",
+                feedTitle: "客户视频流 (已加密)", gaze: "视线追踪: 聚焦产品", intent: "意图识别: 技术验证",
+                transcriptTitle: "实时转录 & 洞察", dealTitle: "成交概率评分",
+                aiPred: "AI 预测: 基于'容差'和'芯片细节'的询问，进入样品测试阶段的概率极高。",
+                engagement: "专注度", sentiment: "情感倾向", techFit: "技术匹配度", priceSens: "价格敏感度", interaction: "交互强度 (FECC)",
+                copilot: "副驾驶建议", suggestion1: "客户关注 PCB 耐久度。建议：展示压力测试报告。", suggestion2: "会议即将结束。建议：主动提议寄送样品。",
+                speakers: { client: "客户 (US)", sales: "销售 (SZ)", ai: "AI 助手" },
+                transcripts: [
+                    { time: "10:02:15", speaker: "客户 (US)", text: "能再让我看下芯片的细节吗？", tag: "兴趣", sentiment: "positive" },
+                    { time: "10:02:20", speaker: "销售 (SZ)", text: "没问题，我现在用微距镜头放大。", tag: "演示", sentiment: "neutral" },
+                    { time: "10:02:35", speaker: "客户 (US)", text: "哇，焊点很干净。公差是多少？", tag: "技术", sentiment: "high-positive" },
+                    { time: "10:02:45", speaker: "AI 助手", text: ">> 检测到关于“公差”的技术询问。建议提供 V2 规格书。", tag: "洞察", sentiment: "system" },
+                ]
+            },
+            en: {
+                headerTitle: "DeepInsight Engine", liveStatus: "LIVE ANALYSIS", exportBtn: "Export Report", notifyBtn: "Notify MPO Team",
+                feedTitle: "Client Video Feed (Encrypted)", gaze: "Gaze: Focused on Product", intent: "Intent: Technical Validation",
+                transcriptTitle: "Live Transcript & Insights", dealTitle: "Deal Probability Score",
+                aiPred: "AI Prediction: High probability of moving to sample testing phase based on technical inquiries.",
+                engagement: "Engagement", sentiment: "Sentiment", techFit: "Technical Fit", priceSens: "Pricing Sensitivity", interaction: "Interaction (FECC)",
+                copilot: "Co-pilot Suggestions", suggestion1: "Client focused on PCB durability. Action: Show stress test report.", suggestion2: "Meeting ending soon. Action: Propose sending samples.",
+                speakers: { client: "Client (US)", sales: "Sales (SZ)", ai: "AI Assistant" },
+                transcripts: [
+                    { time: "10:02:15", speaker: "Client (US)", text: "Could you show me the chip detail again?", tag: "Interest", sentiment: "positive" },
+                    { time: "10:02:20", speaker: "Sales (SZ)", text: "Sure. I'm zooming in with the macro lens now.", tag: "Demo", sentiment: "neutral" },
+                    { time: "10:02:35", speaker: "Client (US)", text: "Wow, the soldering looks very clean. What's the tolerance?", tag: "Technical", sentiment: "high-positive" },
+                    { time: "10:02:45", speaker: "AI Assistant", text: ">> Detected Technical Inquiry regarding 'Tolerance'. Suggest providing Spec Sheet V2.", tag: "Insight", sentiment: "system" },
+                ]
+            }
+        };
+
         const ProgressBar = ({ value, color, label }) => (
             <div className="mb-4">
-                <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">{label}</span>
-                    <span className="text-white font-mono">{Math.round(value)}%</span>
-                </div>
-                <div className="w-full bg-slate-800 rounded-full h-2">
-                    <div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div>
-                </div>
+                <div className="flex justify-between text-xs mb-1"><span className="text-slate-400">{label}</span><span className="text-white font-mono">{Math.round(value)}%</span></div>
+                <div className="w-full bg-slate-800 rounded-full h-2"><div className={`h-2 rounded-full transition-all duration-1000 ${color}`} style={{ width: `${value}%` }}></div></div>
             </div>
         );
 
         const InsightCard = ({ title, iconName, value, trend, color, iconColorClass }) => (
             <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700 backdrop-blur-sm">
                 <div className="flex justify-between items-start mb-2">
-                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}>
-                        <Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} />
-                    </div>
-                    {trend && (
-                        <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                            {trend > 0 ? '+' : ''}{trend}%
-                        </span>
-                    )}
+                    <div className={`p-2 rounded-lg ${color} bg-opacity-20`}><Icon name={iconName} className={`w-5 h-5 ${iconColorClass}`} /></div>
+                    {trend && <span className={`text-xs px-2 py-1 rounded-full ${trend > 0 ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>{trend > 0 ? '+' : ''}{trend}%</span>}
                 </div>
                 <div className="text-2xl font-bold text-white mb-1">{value}</div>
                 <div className="text-xs text-slate-400">{title}</div>
             </div>
         );
 
-        const App = () => {
-            const [lang, setLang] = useState('zh'); // Default to Chinese
+        const AiDashboard = () => {
+            const [lang, setLang] = useState('zh');
             const liveStats = useLiveData();
             const content = contentDict[lang];
-            const transcripts = getTranscripts(lang);
 
-            // Listen for language toggle event from outside
             useEffect(() => {
                 const handleLangChange = (e) => setLang(e.detail.lang);
                 window.addEventListener('langChange', handleLangChange);
@@ -2741,147 +727,46 @@ Html
 
             return (
                 <div className="bg-slate-950 text-slate-200 font-sans p-4 md:p-8 rounded-3xl border border-slate-800 shadow-2xl mx-auto max-w-7xl text-start">
-                    {/* Header */}
                     <header className="flex flex-col md:flex-row justify-between items-center mb-8 border-b border-slate-800 pb-4 gap-4">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20">
-                                <Icon name="Brain" className="text-white" />
-                            </div>
-                            <div>
-                                <h1 className="text-xl font-bold text-white tracking-tight m-0">{content.headerTitle}</h1>
-                                <p className="text-xs text-slate-400 flex items-center gap-2 m-0">
-                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                    {content.liveStatus} • ID: #DC-9928-US
-                                </p>
-                            </div>
+                            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-cyan-600 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-900/20"><Icon name="Brain" className="text-white" /></div>
+                            <div><h1 className="text-xl font-bold text-white tracking-tight m-0">{content.headerTitle}</h1><p className="text-xs text-slate-400 flex items-center gap-2 m-0"><span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>{content.liveStatus} • ID: #DC-9928-US</p></div>
                         </div>
                         <div className="flex gap-4">
                             <button className="px-4 py-2 bg-slate-800 rounded-lg text-sm hover:bg-slate-700 transition text-white border-0">{content.exportBtn}</button>
                             <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg text-sm font-medium hover:bg-cyan-500 transition shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0">{content.notifyBtn}</button>
                         </div>
                     </header>
-
                     <div className="grid grid-cols-12 gap-6">
-                        {/* Left Column */}
                         <div className="col-span-12 lg:col-span-8 space-y-6">
-                            {/* Video Feed */}
                             <div className="bg-black rounded-2xl border border-slate-800 overflow-hidden relative aspect-video group">
-                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center">
-                                    <div className="text-center opacity-30">
-                                        <Icon name="Users" className="text-6xl text-slate-400 mb-4" />
-                                        <p>{content.feedTitle}</p>
-                                    </div>
-                                </div>
-                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2">
-                                    <Icon name="Eye" className="text-green-400" />
-                                    <span className="text-xs text-green-400 font-mono">{content.gaze}</span>
-                                </div>
-                                <div className="absolute bottom-8 left-8 right-8">
-                                    <div className="bg-slate-900/80 backdrop-blur-md p-4 rounded-xl border-l-4 border-cyan-500">
-                                        <p className="text-sm text-slate-300 mb-2">
-                                            <span className="text-cyan-400 font-bold">{transcripts[2].speaker}:</span> "{transcripts[2].text}"
-                                        </p>
-                                        <div className="flex gap-2">
-                                            <span className="text-[10px] px-2 py-0.5 bg-purple-500/20 text-purple-300 rounded border border-purple-500/30">{content.intent}</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div className="absolute inset-0 bg-slate-900 flex items-center justify-center text-center opacity-30"><Icon name="Users" className="text-6xl text-slate-400 mb-4" /><p>{content.feedTitle}</p></div>
+                                <div className="absolute top-4 right-4 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full border border-green-500/30 flex items-center gap-2"><Icon name="Eye" className="text-green-400" /><span className="text-xs text-green-400 font-mono">{content.gaze}</span></div>
                             </div>
-
-                            {/* Transcript */}
                             <div className="bg-slate-900 rounded-xl border border-slate-800 p-6 h-64 overflow-y-auto">
-                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center">
-                                    <Icon name="MessageSquare" className="mr-2" /> {content.transcriptTitle}
-                                </h3>
-                                <div className="space-y-4">
-                                    {transcripts.map((t, idx) => (
-                                        <div key={idx} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}>
-                                            <div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div>
-                                            <div>
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>
-                                                        {t.speaker}
-                                                    </span>
-                                                    {t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}
-                                                </div>
-                                                <p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 flex items-center"><Icon name="MessageSquare" className="mr-2" /> {content.transcriptTitle}</h3>
+                                <div className="space-y-4">{content.transcripts.map((t, i) => (<div key={i} className={`flex gap-4 ${t.sentiment === 'system' ? 'ml-8 opacity-80' : ''}`}><div className="text-xs text-slate-500 font-mono w-16 shrink-0">{t.time}</div><div><div className="flex items-center gap-2 mb-1"><span className={`text-xs font-bold ${t.speaker.includes('AI') ? 'text-cyan-400' : t.speaker.includes('Client') ? 'text-white' : 'text-purple-400'}`}>{t.speaker}</span>{t.tag && <span className="text-[10px] bg-slate-800 px-1.5 rounded text-slate-400">{t.tag}</span>}</div><p className={`text-sm mb-0 ${t.sentiment === 'system' ? 'text-cyan-300 italic' : 'text-slate-300'}`}>{t.text}</p></div></div>))}</div>
                             </div>
                         </div>
-
-                        {/* Right Column */}
                         <div className="col-span-12 lg:col-span-4 space-y-6">
-                            {/* Deal Score */}
-                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
-                                <div className="relative z-10">
-                                    <h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2">
-                                        <Icon name="Target" /> {content.dealTitle}
-                                    </h2>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span>
-                                        <span className="text-sm text-slate-400">/ 100</span>
-                                    </div>
-                                    <p className="text-xs text-slate-500 mt-3">{content.aiPred}</p>
-                                </div>
-                            </div>
-
-                            {/* Stats Grid */}
-                            <div className="grid grid-cols-2 gap-4">
-                                <InsightCard title={content.engagement} value={`${Math.round(liveStats.attention)}%`} iconName="Eye" trend={5} color="bg-purple-500" iconColorClass="text-purple-500" />
-                                <InsightCard title={content.sentiment} value={`${Math.round(liveStats.sentiment)}`} iconName="Activity" trend={2} color="bg-green-500" iconColorClass="text-green-500" />
-                            </div>
-
-                            {/* Indicators */}
-                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                                <h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2">
-                                    <Icon name="Activity" className="text-cyan-500" /> Real-time Indicators
-                                </h3>
-                                <ProgressBar label={content.techFit} value={85} color="bg-cyan-500" />
-                                <ProgressBar label={content.priceSens} value={30} color="bg-yellow-500" />
-                                <ProgressBar label={content.interaction} value={72} color="bg-purple-500" />
-                            </div>
-
-                            {/* Suggestions */}
-                            <div className="bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-5 rounded-xl border border-indigo-500/30">
-                                <h4 className="text-xs font-bold text-indigo-300 uppercase mb-3 flex items-center gap-2">
-                                    <Icon name="AlertCircle" /> {content.copilot}
-                                </h4>
-                                <ul className="space-y-3 pl-0 mb-0">
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>{content.suggestion1}</span>
-                                    </li>
-                                    <li className="flex gap-3 text-sm text-slate-300">
-                                        <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full mt-1.5 shrink-0"></div>
-                                        <span>{content.suggestion2}</span>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div className="bg-gradient-to-b from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 relative overflow-hidden"><div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl -mr-10 -mt-10"></div><div className="relative z-10"><h2 className="text-slate-400 text-sm font-medium mb-2 flex items-center gap-2"><Icon name="Target" /> {content.dealTitle}</h2><div className="flex items-baseline gap-2"><span className="text-5xl font-bold text-white">{Math.round(liveStats.dealScore)}</span><span className="text-sm text-slate-400">/ 100</span></div><p className="text-xs text-slate-500 mt-3">{content.aiPred}</p></div></div>
+                            <div className="grid grid-cols-2 gap-4"><InsightCard title={content.engagement} value={`${Math.round(liveStats.attention)}%`} iconName="Eye" trend={5} color="bg-purple-500" iconColorClass="text-purple-500" /><InsightCard title={content.sentiment} value={`${Math.round(liveStats.sentiment)}`} iconName="Activity" trend={2} color="bg-green-500" iconColorClass="text-green-500" /></div>
+                            <div className="bg-slate-900 p-6 rounded-xl border border-slate-800"><h3 className="text-sm font-bold text-white mb-6 flex items-center gap-2"><Icon name="Activity" className="text-cyan-500" /> Real-time Indicators</h3><ProgressBar label={content.techFit} value={85} color="bg-cyan-500" /><ProgressBar label={content.priceSens} value={30} color="bg-yellow-500" /></div>
                         </div>
                     </div>
                 </div>
             );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
-        root.render(<App />);
+        // Render Roots
+        const dashboardRoot = ReactDOM.createRoot(document.getElementById('react-dashboard-root'));
+        dashboardRoot.render(<AiDashboard />);
+        
+        const mapRoot = ReactDOM.createRoot(document.getElementById('react-map-root'));
+        mapRoot.render(<GlobalMap />);
     </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-114.1s
-Use Arrow Up and Arrow Down to select a turn, Enter to jump to it, and Escape to return to the chat.
-Start typing a prompt
-
-Run
-Ctrl
-1
-
-
-Response ready.
